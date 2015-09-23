@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Needler" type="GROUP"/>
+  <resource name="Plasma Rifle" type="GROUP"/>
+  <resource name="SMG" type="GROUP"/>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="PlasmaRifleBaseS" type="RESOURCE"/>
+  <resource name="PlasmaRifleBaseGrenadeS" type="RESOURCE"/>
+  <resource name="PlasmaRifleBaseDWS" type="RESOURCE"/>
+  <resource name="PlasmaRifleFireS" type="RESOURCE"/>
+  <resource name="PlasmaRifleFireDWS" type="RESOURCE"/>
+  <resource name="PlasmaRifleBodyS" type="RESOURCE"/>
+  <resource name="PlasmaRifleMeleeS" type="RESOURCE"/>
+  <resource name="PlasmaRifleReticleS" type="RESOURCE"/>
+  <resource name="PlasmaRifleDropS" type="RESOURCE"/>
+  <resource name="PlasmaRifleCooldownS" type="RESOURCE"/>
+  <resource name="PlasmaRifleCooldownDWS" type="RESOURCE"/>
+</resources>

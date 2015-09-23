@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="SMGBaseS" type="RESOURCE"/>
+  <resource name="SMGBaseGrenadeS" type="RESOURCE"/>
+  <resource name="SMGBaseDWS" type="RESOURCE"/>
+  <resource name="SMGFireS" type="RESOURCE"/>
+  <resource name="SMGFireDWS" type="RESOURCE"/>
+  <resource name="SMGBodyS" type="RESOURCE"/>
+  <resource name="SMGMeleeS" type="RESOURCE"/>
+  <resource name="SMGReloadS" type="RESOURCE"/>
+  <resource name="SMGReticleS" type="RESOURCE"/>
+  <resource name="SMGDropS" type="RESOURCE"/>
+</resources>
