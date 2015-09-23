@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // count down to the expiration of the impact animation
+    alarm[0] = 25;
+    animate = true;
+    
+    // create the particle types used by the animation
+    sparkPT = part_type_create();
+    part_type_life(sparkPT, 4, 6);
+    part_type_shape(sparkPT, pt_shape_pixel);
+    part_type_scale(sparkPT, 0.65, 0.65);
+    part_type_size(sparkPT, 1, 1, -0.1, 0);
+    part_type_gravity(sparkPT, 0.78, 270);
+    part_type_color_mix(sparkPT, make_color_rgb(127, 255, 191), make_color_rgb(0, 255, 63));
+    part_type_speed(sparkPT, 4, 6, 0, 0);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

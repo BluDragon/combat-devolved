@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">common hit code</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var meleeDamage;
+    
+    // damage defaults to 60
+    meleeDamage = 60;
+    // halt the owner's movement if they were lunging
+    if (owner.meleeLungeTimer != -1) {
+        owner.hspeed = 0;
+        owner.vspeed = 0;
+        // owner is not lunging anymore
+        owner.meleeLungeTimer = -1;
+    }
+    // record to the owner's current weapon that we have indeed hit on this attempt
+    owner.weapons[owner.currentWeapon].meleeHasHit = true;
+    // check for special weapon cases (i.e. Energy Sword)
+    if (owner.weapons[owner.currentWeapon].weaponType == WEAPON_ENERGYSWORD) &amp;&amp; (owner.weapons[owner.currentWeapon].ammoCount &gt; 0) {
+        // use the energy sword's damage
+        meleeDamage = owner.weapons[owner.currentWeapon].damage;
+        // drecement the energy sword's ammo
+        owner.weapons[owner.currentWeapon].ammoCount -= 10;
+        // play the energy sword hit sound
+        playsound(x, y, global.EnergySwordHitSnd);
+    }
+    
+    // inflict the melee damage
+    meleeDealDamage(victim, meleeDamage);
+    if (victim.hp &gt; 0) {
+        // play one of the body-striking sounds ONLY if the victim is still alive!
+        playsound(x, y, choose(global.MeleeBody1Snd, global.MeleeBody2Snd));
+    }
+    
+    // destroy the mask
+    instance_destroy();
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

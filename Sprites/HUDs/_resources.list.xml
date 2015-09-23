@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Ammo HUD" type="GROUP"/>
+  <resource name="Grenade Icons" type="GROUP"/>
+  <resource name="Medal Icons" type="GROUP"/>
+  <resource name="Shields" type="GROUP"/>
+  <resource name="Visor" type="GROUP"/>
+  <resource name="HaloIntelArrowRedS" type="RESOURCE"/>
+  <resource name="HaloIntelArrowBlueS" type="RESOURCE"/>
+  <resource name="HaloTeamBarsEmptyS" type="RESOURCE"/>
+  <resource name="HaloTeamBarsFullS" type="RESOURCE"/>
+  <resource name="HaloCapBarsEmptyS" type="RESOURCE"/>
+  <resource name="HaloCapBarsFullS" type="RESOURCE"/>
+  <resource name="CrosshairS" type="RESOURCE"/>
+  <resource name="ChatWindowS" type="RESOURCE"/>
+</resources>

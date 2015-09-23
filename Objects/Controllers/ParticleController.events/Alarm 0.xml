@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="ALARM" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var i, newLife;
+    
+    // reduce all the particle lifetimes by the reduction value and delete all the ones that die now
+    for (i = 0; i &lt; ds_list_size(tempParticlesLife); i += 1) {
+        // calculate the new life
+        newLife = ds_list_find_value(tempParticlesLife, i) - lifeReduction;
+        // if life is &lt;= 0, delete
+        if (newLife &lt;= 0) {
+            // destroy the particle
+            part_type_destroy(ds_list_find_value(tempParticlesID, i));
+            // delete the indices in the lists
+            ds_list_delete(tempParticlesLife, i);
+            ds_list_delete(tempParticlesID, i);
+            // reduce the iterator count by 1 to account for the deletion
+            i -= 1;
+        } else {
+            // it still exists, so replace the value
+            ds_list_replace(tempParticlesLife, i, newLife);
+        }
+    }
+    
+    // if there are any particles left, set the timer
+    if (ds_list_size(tempParticlesLife) &gt; 0) {
+        alarm[0] = ds_list_find_value(tempParticlesLife, 0);
+        lifeReduction = ds_list_find_value(tempParticlesLife, 0);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="onSameTeam" type="RESOURCE"/>
+  <resource name="implies" type="RESOURCE"/>
+  <resource name="Iif" type="RESOURCE"/>
+  <resource name="windowScale" type="RESOURCE"/>
+  <resource name="undoZoomCursor" type="RESOURCE"/>
+  <resource name="myCharExists" type="RESOURCE"/>
+  <resource name="keyNameString" type="RESOURCE"/>
+</resources>

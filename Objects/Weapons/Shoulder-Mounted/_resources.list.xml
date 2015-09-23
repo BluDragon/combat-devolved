@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="FuelRodCannon" type="RESOURCE"/>
+  <resource name="RocketLauncher" type="RESOURCE"/>
+  <resource name="SpartanLaser" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // muzzle flash effects
+    var xviewoffset, yviewoffset, xviewsize, yviewsize;
+    
+    xviewoffset = view_xview[0];
+    yviewoffset = view_yview[0];
+    xviewsize = view_wview[0];
+    yviewsize = view_hview[0];
+    
+    var xr, yr;
+    
+    // abort drawing if the weapon is not on-screen
+    if distance_to_point(xviewoffset + xviewsize / 2, yviewoffset + yviewsize / 2) &gt; 800 exit;
+    
+    // draw the weapon's muzzle flash
+    if (alarm[6] &gt; 1) {
+        // get the weapon angle
+        theta = degtorad(image_angle);
+        
+        switch (getWeaponPosition(id)) {
+            case 0:
+                // unequipped, no effect
+                exit;
+                break;
+                
+            case 1:
+                // original formula
+                xr = x + xoffset * image_xscale + (cos(theta) * xbarrel * image_xscale + sin(theta) * (ybarrel));
+                yr = y + yoffset - (sin(theta) * xbarrel * image_xscale - cos(theta) * (ybarrel));
+                break;
+            
+            case 2:
+                // left-hand gun formula
+                xr = x + (xoffset + xoffsetDW) * image_xscale + (cos(theta) * xbarrel * image_xscale + sin(theta) * (ybarrel));
+                yr = y + (yoffset + yoffsetDW) - (sin(theta) * xbarrel * image_xscale - cos(theta) * (ybarrel));
+                break;
+        }
+        
+        draw_set_blend_mode(bm_add);
+        // draw the flash sprite
+        draw_sprite_ext(FRCMuzzleFlashS, flashFrame, xr, yr, image_xscale * flashSize, image_yscale * flashSize, image_angle, c_white, owner.cloakAlpha);
+        draw_set_blend_mode(bm_normal);
+        flashSize /= 1.8;
+        flashFrame += 1;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

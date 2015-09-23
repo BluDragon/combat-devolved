@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Pickups" type="GROUP"/>
+  <resource name="FragGrenadeS" type="RESOURCE"/>
+  <resource name="PlasmaGrenadeS" type="RESOURCE"/>
+  <resource name="SpikeGrenadeS" type="RESOURCE"/>
+  <resource name="FirebombS" type="RESOURCE"/>
+</resources>

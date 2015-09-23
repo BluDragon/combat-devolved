@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="TeamSelectController" type="RESOURCE"/>
+  <resource name="ScoreTableController" type="RESOURCE"/>
+  <resource name="HUD" type="RESOURCE"/>
+  <resource name="ScorePanel" type="RESOURCE"/>
+  <resource name="ControlPointHUD" type="RESOURCE"/>
+  <resource name="ArenaHUD" type="RESOURCE"/>
+  <resource name="KothHUD" type="RESOURCE"/>
+  <resource name="DKothHUD" type="RESOURCE"/>
+  <resource name="GeneratorHUD" type="RESOURCE"/>
+  <resource name="KillLog" type="RESOURCE"/>
+  <resource name="BubbleMenuZ" type="RESOURCE"/>
+  <resource name="RespawnTimer" type="RESOURCE"/>
+  <resource name="BubbleMenuX" type="RESOURCE"/>
+  <resource name="DeathCam" type="RESOURCE"/>
+  <resource name="WinBanner" type="RESOURCE"/>
+  <resource name="AnnouncerController" type="RESOURCE"/>
+  <resource name="VisorHud" type="RESOURCE"/>
+  <resource name="MedalController" type="RESOURCE"/>
+  <resource name="AchievementController" type="RESOURCE"/>
+  <resource name="SumochiSyncController" type="RESOURCE"/>
+  <resource name="ChatBox" type="RESOURCE"/>
+  <resource name="Cursor" type="RESOURCE"/>
+</resources>

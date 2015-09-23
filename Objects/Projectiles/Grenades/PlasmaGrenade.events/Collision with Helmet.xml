@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="Helmet">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if we've not been stickied before, and we hit a real victim, we are stuck now
+    if (!stickied) &amp;&amp; (airtime &gt; 3) &amp;&amp; (!onSameTeam(ownerPlayer, other.ownerPlayer) || (ownerPlayer == other.ownerPlayer)) {
+        // we're now stuck
+        stickied = true;
+        stickyID = other.id;
+        speed = 0;
+        airtime = 0;
+        depth = -2; // draw under weapons, over helmets
+        
+        // armed, too!
+        if (!armed) {
+            armed = true;
+            alarm[0] = fuseLength;
+            playsound(x, y, armedSound);
+            // stop sizzling
+            loopsoundstop(sizzleSID);
+            sizzleSID = -1;
+        }
+        
+        // figure out where we got stuck relative to the victim's origin
+        /*
+        if (other.image_xscale == 1) {
+            // facing the right
+            stickyX = x - other.x + lengthdir_x(point_distance(other.x, other.y, x, y), -other.image_angle);
+            stickyY = y - other.y + lengthdir_y(point_distance(other.x, other.y, x, y), -other.image_angle);
+        } else {
+            // facing left?
+            stickyX = -(x - other.x + lengthdir_x(point_distance(other.x, other.y, x, y), other.image_angle));
+            stickyY = y - other.y + lengthdir_y(point_distance(other.x, other.y, x, y), other.image_angle);
+        }
+        */
+        // Whoa forget precision.  The head is pretty tiny, so get stuck to a random spot on it
+        stickyX = random_range(-2, 7);
+        stickyY = random_range(-8, 2);
+        stickyType = Helmet;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

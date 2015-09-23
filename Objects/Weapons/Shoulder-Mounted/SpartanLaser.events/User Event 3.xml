@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var sid;
+    
+    ammoCount = max(0, ammoCount - 20);
+    sid = playsound(x, y, global.SpartanLaserSnd);
+    registerAutopanSound(sid, x, y);
+    
+    justShot = true;
+    readyToShoot = false;
+    weaponRefireTime();
+    
+    // HITSCAN ALSO, YAY
+    // draw the line this frame
+    drawShot = true;
+    
+    // reset the charge level
+    chargeLevel = 0;
+
+    // angle stuff
+    var theta;
+    
+    theta = image_angle;
+    if (image_xscale &lt; 0) theta -= 180;
+    
+    // common hitscan detection, ignore soft targets
+    // call the macro to calculate the shot point
+    weaponShotPoint();
+    // then do the up-close and personal check
+    hitscanCollision(x, y, theta, point_distance(x, y, shotx, shoty), true);
+    if (hitType == -1) {
+        // nobody was found up close, do the normal shot check
+        hitscanCollision(shotx, shoty, theta, maxRange, true);
+    } else {
+        // someone was found up close, don't draw the shot
+        drawShot = false;
+    }
+    
+    // the weapon always overheats on a single shot
+    overheated = true;
+    heat = maxHeat;
+    
+    // modify the particle effects of the beam
+    var theta;
+    theta = point_direction(shotx, shoty, shotx2, shoty2);
+    part_type_orientation(trailPT, theta, theta, 0, 0, 0);
+    part_type_scale(trailPT, point_distance(shotx, shoty, shotx2, shoty2) / 54, 1.2);
+    part_type_orientation(corePT, theta, theta, 0, 0, 0);
+    part_type_scale(corePT, point_distance(shotx, shoty, shotx2, shoty2) / 54, 0.2);
+    
+    // Spawn and configure the beam collision mask
+    var beamMask;
+    beamMask = instance_create(shotx, shoty, SpartanLaserBeamMask);
+    beamMask.image_angle = theta;
+    beamMask.image_xscale = point_distance(shotx, shoty, shotx2, shoty2) / beamMask.sprite_width;
+    beamMask.damage = damage;
+    beamMask.shieldDamage = shieldDamage;
+    beamMask.damageBleeds = damageBleeds;
+    beamMask.owner = owner;
+    beamMask.ownerPlayer = ownerPlayer;
+    beamMask.team = owner.team;
+    beamMask.weaponType = WEAPON_SPARTANLASER;
+    
+    // spawn and configure the endpoint burst if the beam hit an obstacle
+    if (hitType != -1) {
+        var poi;
+        poi = instance_create(shotx2, shoty2, SpartanLaserBlastMask);
+        poi.damage = damage;
+        poi.shieldDamage = shieldDamage;
+        poi.damageBleeds = damageBleeds;
+        poi.owner = owner;
+        poi.ownerPlayer = ownerPlayer;
+        poi.team = owner.team;
+        poi.weaponType = WEAPON_SPARTANLASER;
+    }
+    
+    if (ownerPlayer == global.myself) ammoWarningCheck(id, owner.weapons[2] == id, true, heat, true);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

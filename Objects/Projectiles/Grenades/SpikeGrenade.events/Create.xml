@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // set the defaults for the grenade
+    armed = false;      // the grenade is armed once it hits a surface or enemy character
+    fuseLength = 28;    // the number of frames it takes for the grenade to explode once armed
+    damage = 300;       // instakill damage on whoever it gets stuck to
+    
+    weaponType = WEAPON_SPIKEGRENADE;
+    
+    stickied = false;   // whether the grenade has stuck to someone
+    stickyID = -1;      // instance ID of the hapless victim, or -1 for nobody
+                        // can be a Character or Helmet
+    stickyX = 0;        // x offset on the victim where we got stuck
+    stickyY = 0;        // y offset on the victim where we got stuck
+    stickyType = -1;    // the type of object we got stuck to
+    
+    // sounds
+    armedSound = global.SpikeGrenadeArmedSnd;
+    
+    // start sizzling!
+    sizzleSID = loopsoundstart(x, y, global.SpikeGrenadeSizzleSnd);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// Beam Rifle spark effects
+{
+    var px, py, pa, pos, tick, corePT, trailPT, theta;
+    
+    // beam effects drawing
+    if (drawShot) {
+        drawShot = false;
+        theta = point_direction(shotx, shoty, shotx2, shoty2);
+
+        // create and spawn the beam particles
+        corePT = part_type_create();
+        registerTempParticle(corePT, 6, 6);
+        part_type_shape(corePT, pt_shape_line);
+        part_type_color1(corePT, make_color_rgb(219, 198, 255));
+        part_type_alpha2(corePT, 1, 0);
+        part_type_blend(corePT, true);
+        part_type_orientation(corePT, theta, theta, 0, 0, 0);
+        part_type_scale(corePT, point_distance(shotx, shoty, shotx2, shoty2) / 54, 0.2);
+        
+        trailPT = part_type_create();
+        registerTempParticle(trailPT, 8, 8);
+        part_type_shape(trailPT, pt_shape_line);
+        part_type_color1(trailPT, make_color_rgb(96, 0, 255));
+        part_type_alpha2(trailPT, 1, 0);
+        part_type_blend(trailPT, true);
+        part_type_orientation(trailPT, theta, theta, 0, 0, 0);
+        part_type_scale(trailPT, point_distance(shotx, shoty, shotx2, shoty2) / 54, 0.4);
+        
+        // spawn the particles
+        part_particles_create(global.weaponPS, (shotx + shotx2) / 2, (shoty + shoty2) / 2, trailPT, 1);
+        part_particles_create(global.weaponPS, (shotx + shotx2) / 2, (shoty + shoty2) / 2, corePT, 1);
+    }
+    
+    // if the owner is cloaked, don't draw any particles
+    if (owner.cloakAlpha &lt; 0.5) exit;
+    
+    pos = getWeaponPosition(id);
+    
+    // if the beam rifle is in cooldown and not sheathed
+    if (alarm[10] &gt; -1) &amp;&amp; (pos != 0) {
+        // figure out which frame is being drawn
+        if (maxHeat - alarm[10] &lt; 9) {
+            tick = floor((maxHeat - alarm[10]) / 3);
+        } else if (maxHeat - alarm[10] &lt; maxHeat - 9) {
+            tick = 2;
+        } else {
+            tick = 3 + floor((9 - alarm[10]) / 3);
+        }
+        // depending on which tick it is, we may or may not draw particles
+        // we do not draw particles on frames 0, 4 or 5
+        if !((tick == 0) || (tick &gt;= 4)) {
+            // figure out where to draw the sparks
+            // 29.7 angle
+            px = x + (22 + xoffset) * image_xscale;
+            py = y - 4 + yoffset;
+            pa = min(1, heat / maxHeat * 6);
+            draw_sprite_ext(BeamRifleSparksS, sparkFrame, px, py, image_xscale, 0.6, 29.7 * image_xscale, c_white, pa);
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

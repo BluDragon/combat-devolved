@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="VisorHudEndStep" type="RESOURCE"/>
+  <resource name="drawVisor" type="RESOURCE"/>
+  <resource name="drawAmmoHud" type="RESOURCE"/>
+  <resource name="ammoWarningCheck" type="RESOURCE"/>
+</resources>

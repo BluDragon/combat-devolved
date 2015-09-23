@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// init the display variables
+earnedCheevo = -1;  // the currently-displayed achievement
+earnedAge = 0;     // age counter of the display
+
+// counters and things for the various cheevos
+// the timer for Gotta Catch 'Em All.  Is set to 300 upon CP cap/flag cap,
+// and if another such event happens while it's still non-zero, the cheevo is awarded
+catchEmAllTimer = 0;
+
+// if the heavy is currently eligible to earn Stop Drop Go
+// Gets set to True each step the heavy has &lt; 50 HP
+// Afterwards is set to False if any of these conditions are true:
+// 1. Character dies
+// 2. Character is healed by a medic
+// 3. Character uses a medcabinet
+// if this value is True and his HP is &gt;= his max, cheevo is earned
+stopDropGoOkay = false;
+
+// multi kill counters for explosive weapons and the sword
+multikillExplosives = 0;
+multikillSword = 0;
+
+// kill counters for the needler, only gets reset when the match ends
+// (which results in this function being called again, yay!)
+needlerKills = 0;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

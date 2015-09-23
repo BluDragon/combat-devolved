@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // set the needler's sprites based on its ammo count
+    if (ammoCount &gt; 0) {
+        // has ammo
+        normalSprite = NeedlerBaseS;
+        grenadeSprite = NeedlerBaseGrenadeS;
+        meleeSprite = NeedlerMeleeS;
+        dualSprite = NeedlerBaseDWS;
+    } else {
+        // no ammo
+        normalSprite = NeedlerEmptyBaseS;
+        grenadeSprite = NeedlerEmptyBaseGrenadeS;
+        meleeSprite = NeedlerEmptyMeleeS;
+        dualSprite = NeedlerEmptyBaseDWS;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Assault Rifle" type="GROUP"/>
+  <resource name="Battle Rifle" type="GROUP"/>
+  <resource name="Beam Rifle" type="GROUP"/>
+  <resource name="Carbine" type="GROUP"/>
+  <resource name="Shotgun" type="GROUP"/>
+  <resource name="Sniper Rifle" type="GROUP"/>
+</resources>

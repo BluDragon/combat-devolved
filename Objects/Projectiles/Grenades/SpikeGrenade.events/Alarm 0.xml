@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="ALARM" id="0">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">ka-BOOM!</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if we're stuck to a victim, deal damage to them when we explode
+    if (stickyID != -1) {
+        if (instance_exists(stickyID)) {
+            weaponDealDamage(stickyID, damage, damage, true, false, false, ownerPlayer, weaponType);
+        }
+    }
+    
+    // spawn the 10 bolts
+    var spawnArc, bolt, poi;
+    spawnArc = 30;  // the arc the bolts will fire in
+    
+    repeat (10) {
+        bolt = instance_create(x, y, SpikeGrenadeBolt);
+        bolt.damage = 9;
+        bolt.shieldDamage = bolt.damage;
+        bolt.direction = image_angle - (spawnArc / 2) + random(spawnArc) + 180;
+        bolt.image_angle = bolt.direction;
+        bolt.speed = 18;
+        bolt.lifetime = ceil(200 / bolt.speed);
+        bolt.alarm[0] = bolt.lifetime;
+        bolt.owner = owner;
+        bolt.ownerPlayer = ownerPlayer;
+        bolt.team = team;
+        bolt.weaponType = weaponType;
+    }
+    
+    // create the explosion and impart the direction of the blast
+    poi = instance_create(x, y, SpikeGrenadePOI);
+    poi.image_angle = image_angle + 180;
+    // setup its particles
+    with (poi) {
+        event_user(0);
+    }
+    
+    // die
+    instance_destroy();
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

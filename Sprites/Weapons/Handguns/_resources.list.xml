@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Magnum" type="GROUP"/>
+  <resource name="Mauler" type="GROUP"/>
+  <resource name="Plasma Pistol" type="GROUP"/>
+  <resource name="Spiker" type="GROUP"/>
+</resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="ALARM" id="10">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">burst fire</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// burstfire timer
+{
+    if (burstLeft &lt;= 0) exit;
+    
+    // deduct from the burst counter, remove 1 ammo, and set the timer for the next shot
+    burstLeft -= 1;
+    ammoCount = max(0, ammoCount - 1);
+    alarm[10] = 3;
+    // draw the line this frame
+    drawShot = true;
+    
+    // angle stuff
+    var theta;
+    
+    theta = image_angle;
+    if (image_xscale &lt; 0) theta -= 180;
+    theta += spread[burstLeft];
+    
+    // common hitscan detection
+    // call the macro to calculate the shot point
+    weaponShotPoint();
+    // then do the up-close and personal check
+    hitscanCollision(x, y, theta, point_distance(x, y, shotx, shoty));
+    if (hitType == -1) {
+        // nobody was found up close, do the normal shot check
+        hitscanCollision(shotx, shoty, theta, maxRange);
+    } else {
+        // someone was found up close, don't draw the shot
+        drawShot = false;
+    }
+    
+    // common damage
+    weaponDealDamage(hitID,
+        shieldDamage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1),
+        damage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1),
+        damageBleeds, headshotShield, headshotKill, ownerPlayer, weaponType);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

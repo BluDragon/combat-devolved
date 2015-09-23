@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="SpartanLaserBaseS" type="RESOURCE"/>
+  <resource name="SpartanLaserBaseGrenadeS" type="RESOURCE"/>
+  <resource name="SpartanLaserFireS" type="RESOURCE"/>
+  <resource name="SpartanLaserBodyS" type="RESOURCE"/>
+  <resource name="SpartanLaserMeleeS" type="RESOURCE"/>
+  <resource name="SpartanLaserReticleS" type="RESOURCE"/>
+  <resource name="SpartanLaserReticleArrowS" type="RESOURCE"/>
+  <resource name="SpartanLaserDropS" type="RESOURCE"/>
+</resources>

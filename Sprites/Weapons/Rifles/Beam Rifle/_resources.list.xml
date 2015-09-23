@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="BeamRifleBaseS" type="RESOURCE"/>
+  <resource name="BeamRifleBaseGrenadeS" type="RESOURCE"/>
+  <resource name="BeamRifleFireS" type="RESOURCE"/>
+  <resource name="BeamRifleBodyS" type="RESOURCE"/>
+  <resource name="BeamRifleMeleeS" type="RESOURCE"/>
+  <resource name="BeamRifleReticleS" type="RESOURCE"/>
+  <resource name="BeamRifleDropS" type="RESOURCE"/>
+  <resource name="BeamRifleCooldownS" type="RESOURCE"/>
+  <resource name="BeamRifleZoomMaskS" type="RESOURCE"/>
+  <resource name="BeamRifleZoomBarS" type="RESOURCE"/>
+</resources>

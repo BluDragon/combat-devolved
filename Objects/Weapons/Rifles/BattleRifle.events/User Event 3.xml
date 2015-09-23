@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// prep firing of the battle rifle
+// play the sound
+playsound(x,y,global.BattleRifleSnd);
+
+// grab 3 random spread values from the seed for each shot
+spread[0] = (random(1) - 0.5) * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldSpreadFactor, 1);
+spread[1] = (random(2) - 1) * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldSpreadFactor, 1);
+spread[2] = (random(3) - 1.5) * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldSpreadFactor, 1);
+
+// setup the 3-round burst
+burstLeft = 3;
+alarm[10] = 1;
+
+// yep, just shot
+justShot = true;
+readyToShoot = false;
+weaponRefireTime();
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

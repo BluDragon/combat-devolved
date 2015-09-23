@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="MagnumBaseS" type="RESOURCE"/>
+  <resource name="MagnumBaseGrenadeS" type="RESOURCE"/>
+  <resource name="MagnumBaseDWS" type="RESOURCE"/>
+  <resource name="MagnumFireS" type="RESOURCE"/>
+  <resource name="MagnumFireDWS" type="RESOURCE"/>
+  <resource name="MagnumBodyS" type="RESOURCE"/>
+  <resource name="MagnumMeleeS" type="RESOURCE"/>
+  <resource name="MagnumReloadS" type="RESOURCE"/>
+  <resource name="MagnumReticleS" type="RESOURCE"/>
+  <resource name="MagnumDropS" type="RESOURCE"/>
+</resources>

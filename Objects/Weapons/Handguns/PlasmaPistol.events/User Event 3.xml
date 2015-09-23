@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var bolt, theta, mask, uCAP;
+    
+    // we just shot and can't shoot yet
+    justShot = true;
+    readyToShoot = false;
+    weaponRefireTime();
+    
+    // angle stuff
+    theta = image_angle;
+    uCAP = false;
+    if (image_xscale &lt; 0) theta -= 180;
+    
+    // call the macro to calculate the shot point
+    weaponShotPoint();
+    // then do the up-close and personal check
+    hitscanCollision(x, y, theta, point_distance(x, y, shotx, shoty));
+    // if a victim was found spawn the projectiles directly on their body
+    if (hitType == Character) {
+        shotx = hitID.x;
+        shoty = hitID.y;
+        uCAP = true;
+    } else if (hitType == Helmet) {
+        shotx = hitID.owner.x;
+        shoty = hitID.owner.y;
+        uCAP = true;
+    }
+    
+    // whether we're fully charged or not
+    if (chargeLevel &lt; maxCharge) {
+        // not a full charge -- normal shot
+        ammoCount = max(0, ammoCount - 5);  // 0.5% ammo used per normal shot
+        heat = min(heat + 9, maxHeat);
+        // play a normal shot sound
+        playsound(x, y, global.PlasmaPistolNormalShotSnd);
+        
+        // spawn a normal plasma pistol bolt
+        bolt = instance_create(shotx, shoty, PlasmaPistolBolt);
+        bolt.damage = 2.4 * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1);          // 2.4 hp damage
+        bolt.shieldDamage = 10 * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1);     // 10 shield damage
+        bolt.damageBleeds = false;  // no damage bleeding
+        bolt.direction = owner.aimDirection;
+        if (uCAP) {
+            bolt.speed = 0;
+            bolt.lifetime = 2;
+        } else {
+            bolt.speed = 16;
+            bolt.lifetime = ceil(maxRange / bolt.speed);
+        }
+        bolt.alarm[0] = bolt.lifetime;
+        bolt.owner = owner;
+        bolt.ownerPlayer = ownerPlayer;
+        bolt.team = owner.team;
+        bolt.weaponType = weaponType;
+        
+        // if the heat is now maxed out, play the normal cooldown sound
+        if (heat &gt;= maxHeat) playsound(x, y, global.PlasmaPistolNormalCooldownSnd); 
+    } else {
+        // full charge shot
+        ammoCount = max(0, ammoCount - 100);    // 10% ammo used per charged shot
+        heat = maxHeat;
+        
+        // spawn a full-charge plasma pistol bolt
+        bolt = instance_create(shotx, shoty, ChargedPlasmaBolt);
+        bolt.damage = 20 * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1);
+        bolt.shieldDamage = 250 * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1);
+        bolt.damageBleeds = false;
+        bolt.direction = owner.aimDirection;
+        if (uCAP) {
+            bolt.speed = 0;
+            bolt.lifetime = 2;
+        } else {
+            bolt.speed = 14;
+            bolt.lifetime = ceil(400 / bolt.speed);
+        }
+        bolt.alarm[0] = bolt.lifetime;
+        bolt.owner = owner;
+        bolt.ownerPlayer = ownerPlayer;
+        bolt.team = owner.team;
+        bolt.weaponType = weaponType;
+        
+        // make the homing mask for the bolt and assign it to it
+        mask = instance_create(shotx, shoty, PlasmaBoltHomingMask);
+        bolt.mask = mask;
+        mask.direction = owner.aimDirection;
+        mask.object = bolt;
+        
+        // play the charged cooldown sound
+        playsound(x, y, global.PlasmaPistolChargedShotSnd);
+    }
+    
+    // reset the charge level
+    chargeLevel = 0;
+    // kill any charging sound that may have been playing
+    // NOTE: this is done here because this event gets called BEFORE CharacterBeginStep,
+    // so the killing of the sound there fails to occur as the charge level gets reset here
+    if (FMODInstanceIsPlaying(chargeSoundID)) FMODInstanceStop(chargeSoundID);
+    
+    
+    // if the weapon's overheated, set the overheated flag
+    if (heat &gt;= maxHeat) {
+        overheated = true;
+        alarm[10] = maxHeat;    // animate the cooldown
+        // if this is the player, do the ammo warning cooldown flash for as long as it needs to cool down
+        if (ownerPlayer == global.myself) ammoWarningCheck(id, owner.weapons[2] == id, true, heat, true);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

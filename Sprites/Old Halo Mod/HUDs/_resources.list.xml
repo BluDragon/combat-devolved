@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Class and Team Select" type="GROUP"/>
+  <resource name="Menus" type="GROUP"/>
+  <resource name="ScoreBoard" type="GROUP"/>
+  <resource name="Lobby" type="GROUP"/>
+  <resource name="Equipment Icons" type="GROUP"/>
+  <resource name="HaloTeamBarsShineS" type="RESOURCE"/>
+  <resource name="HaloArrowIconsS" type="RESOURCE"/>
+  <resource name="HaloKothIconsS" type="RESOURCE"/>
+  <resource name="HaloGenIconsS" type="RESOURCE"/>
+</resources>

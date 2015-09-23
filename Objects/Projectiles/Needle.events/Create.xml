@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // set the defaults for the projectile
+    originx = x;
+    originy = y;
+    headshotShield = false;
+    headshotKill = false;
+    
+    // homing function
+    searching = true;       // if the needle is searching for someone to home in on
+    targetInMask = false;   // if the target is still colliding with the mask
+    target = noone;
+    nearestTarget = noone;
+    nearestDist = 0;
+    maxTurn = 3;            // the maximum angle the projectile can turn on each frame
+    
+    // sticky function
+    picky = true;       // whether the needle will only stick to enemy characters
+                        // if false it will stick to anything, terrain, allies, even the shooter
+    stickied = false;   // whether the needle has stuck to someone
+    stickyID = -1;      // instance ID of the hapless victim, or -1 for nobody
+                        // can be a Character or Helmet
+    stickyX = 0;        // x offset on the victim where we got stuck
+    stickyY = 0;        // y offset on the victim where we got stuck
+    stickyAngle = 0;    // angle on the victim where we got stuck
+    stickyFlip = 1;     // the x-scale for when we got stuck
+    stickyType = -1;    // the type of object we got stuck to
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

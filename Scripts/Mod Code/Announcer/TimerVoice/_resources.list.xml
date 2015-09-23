@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="timerVoiceInit" type="RESOURCE"/>
+  <resource name="timerVoiceTick" type="RESOURCE"/>
+  <resource name="timerVoiceTickKotH" type="RESOURCE"/>
+</resources>

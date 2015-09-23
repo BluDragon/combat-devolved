@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// Beam Rifle particle effects
+{
+    var px, py, px2, py2, pos, tick;
+    
+    // if the owner is cloaked, don't spawn any particles
+    if (owner.cloakAlpha &lt; 0.5) exit;
+    
+    pos = getWeaponPosition(id);
+    
+    // if the beam rifle is in cooldown and not sheathed
+    if (alarm[10] &gt; -1) &amp;&amp; (pos != 0) {
+        // figure out which frame is being drawn
+        if (maxHeat - alarm[10] &lt; 9) {
+            tick = floor((maxHeat - alarm[10]) / 3);
+        } else if (maxHeat - alarm[10] &lt; maxHeat - 9) {
+            tick = 2;
+        } else {
+            tick = 3 + floor((9 - alarm[10]) / 3);
+        }
+        // depending on which tick it is, we may or may not spawn particles
+        // we do not spawn particles on frames 0, 4 or 5
+        if !((tick == 0) || (tick &gt;= 4)) {
+            // figure our where the spawn points for the particles would be
+            px = x + (15 + xoffset) * image_xscale;
+            py = y + yoffset;
+            px2 = x + (29 + xoffset) * image_xscale;
+            py2 = y - 8 + yoffset;
+            // move the emitter and spawn smoke based on remaining heat
+            part_emitter_region(global.weaponPS, smokeEM, px, px2, py, py2, ps_shape_line, ps_distr_linear);
+            part_emitter_burst(global.weaponPS, smokeEM, global.beamRifleSmokePT, heat / 20);
+        }
+    }
+    
+    // increment the spark animation frame
+    sparkFrame = (sparkFrame + 1) mod sprite_get_number(BeamRifleSparksS);
+}
+</argument>
+      </arguments>
+    </action>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+  </actions>
+</event>

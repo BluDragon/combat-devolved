@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Weapon Icons" type="GROUP"/>
+  <resource name="Ammo Pips" type="GROUP"/>
+  <resource name="Ammo Bars" type="GROUP"/>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="ds_ini_create" type="RESOURCE"/>
+  <resource name="ds_ini_clear" type="RESOURCE"/>
+  <resource name="ds_ini_destroy" type="RESOURCE"/>
+  <resource name="ds_ini_section_exists" type="RESOURCE"/>
+  <resource name="ds_ini_key_exists" type="RESOURCE"/>
+  <resource name="ds_ini_section_create" type="RESOURCE"/>
+  <resource name="ds_ini_section_delete" type="RESOURCE"/>
+  <resource name="ds_ini_key_delete" type="RESOURCE"/>
+  <resource name="ds_ini_key_set" type="RESOURCE"/>
+  <resource name="ds_ini_key_get" type="RESOURCE"/>
+  <resource name="ds_ini_save" type="RESOURCE"/>
+  <resource name="ds_ini_load" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if the window should be coming on, move and increase opacity
+    if (showChat || global.chatControl) {
+        //if (alpha &lt; tAlpha) alpha = power(alpha, 0.7);
+        //else alpha = tAlpha;
+        if (x &gt; 535) x -= 53;
+        if (x &lt; 535) x = 535;
+    } else {
+        // if not, decrease opacity and move it away
+        //if (alpha &gt; tAlpha) alpha = power(alpha, 1 / 0.7);
+        //else alpha = tAlpha;
+        if (x &lt; 810) x += 53;
+        if (x &gt; 810) x = 810;
+    }
+    // move opacity towards the target
+    if (alpha &lt; tAlpha) {
+        alpha = power(alpha, 0.7);
+        if (alpha &gt; tAlpha) alpha = tAlpha;
+    } else if (alpha &gt; tAlpha) {
+        alpha = power(alpha, 1 / 0.7);
+        if (alpha &lt; tAlpha) alpha = tAlpha;
+    }
+    
+    // increment the cursor counter
+    cursor += 1;
+    if (cursor &gt;= 30) cursor -= 30;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

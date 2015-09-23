@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // the step event only needs to occur if players exist
+    // (which is our rough/primitive check to see if we're in an actual match)
+    if (!instance_exists(Player)) exit;
+    
+    // increment the achievement age counter, if we're displaying one
+    if (earnedCheevo != -1) {
+        earnedAge += 1;
+        // if it's too old, kill it
+        if (earnedAge &gt; 120) {
+            earnedAge = 0;
+            earnedCheevo = -1;
+        }
+    }
+    
+    // decrement the Gotta Catch Em All timer
+    catchEmAllTimer = max(0, catchEmAllTimer - 1);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

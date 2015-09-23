@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Impact" type="RESOURCE"/>
+  <resource name="ChargedPlasmaBoltPOI" type="RESOURCE"/>
+  <resource name="FuelRodCannonPOI" type="RESOURCE"/>
+  <resource name="SpartanLaserPOI" type="RESOURCE"/>
+  <resource name="BruteShotPOI" type="RESOURCE"/>
+  <resource name="SpikeGrenadePOI" type="RESOURCE"/>
+</resources>

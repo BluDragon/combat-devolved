@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var snd;
+    
+    // a new voice clip has been added to the queue or it's time to start talking
+    // exit if we're still talking (for example talking during the adding of a sound)
+    if (speaking) exit;
+    
+    // we're not speaking, so play the sound and set the alarm
+    snd = ds_queue_dequeue(voiceQueue);
+    
+    //sound_play(voxSound[snd]);
+    FMODSoundPlay(voxSound[snd]);
+    alarm[0] = voxDelay[snd];
+    
+    // we're speaking again
+    speaking = true;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

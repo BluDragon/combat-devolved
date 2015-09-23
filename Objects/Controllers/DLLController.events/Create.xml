@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // Link and initialize the FMOD library
+    LinkFMOD();
+    FMODinit(512);  // 512 should be enough
+    
+    // Link the H2D library
+    LinkH2DLib();
+    
+    // create the list structures for the auto-pan sounds
+    autopanSoundsID = ds_list_create();
+    autopanSoundsX = ds_list_create();
+    autopanSoundsY = ds_list_create();
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

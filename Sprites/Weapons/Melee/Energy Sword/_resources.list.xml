@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="EnergySwordBaseS" type="RESOURCE"/>
+  <resource name="EnergySwordBaseGrenadeS" type="RESOURCE"/>
+  <resource name="EnergySwordFireS" type="RESOURCE"/>
+  <resource name="EnergySwordBodyS" type="RESOURCE"/>
+  <resource name="EnergySwordMeleeS" type="RESOURCE"/>
+  <resource name="EnergySwordReticleS" type="RESOURCE"/>
+  <resource name="EnergySwordDropS" type="RESOURCE"/>
+  <resource name="EnergySwordEmptyBaseS" type="RESOURCE"/>
+  <resource name="EnergySwordEmptyBaseGrenadeS" type="RESOURCE"/>
+  <resource name="EnergySwordEmptyMeleeS" type="RESOURCE"/>
+</resources>

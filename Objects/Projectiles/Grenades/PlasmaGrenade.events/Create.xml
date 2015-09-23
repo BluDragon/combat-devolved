@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // set the defaults for the grenade
+    armed = false;      // the grenade is armed once it hits a surface or enemy character
+    fuseLength = 31;    // the number of frames it takes for the grenade to explode once armed
+    damageRadius = 60;
+    damageMax = 120;
+    damageMin = 50;
+    
+    weaponType = WEAPON_PLASMAGRENADE;
+    
+    bounceCoefficient = 0.2;    // plasmas are shit at bouncing
+    
+    effectFrame = 0;    // frame for effect animations
+    
+    // number of frames without a collision
+    airtime = 0;
+    
+    stickied = false;   // whether the plasma has stuck to someone
+    stickyID = -1;      // instance ID of the hapless victim, or -1 for nobody
+                        // can be a Character or Helmet
+    stickyX = 0;        // x offset on the victim where we got stuck
+    stickyY = 0;        // y offset on the victim where we got stuck
+    stickyType = -1;    // the type of object we got stuck to
+    
+    // sounds
+    armedSound = global.PlasmaGrenadeArmedSnd;
+    bounceSound = -1;
+    
+    // start sizzling!
+    sizzleSID = loopsoundstart(x, y, global.PlasmaGrenadeSizzleSnd);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

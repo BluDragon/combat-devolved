@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Explosion" type="RESOURCE"/>
+  <resource name="FragExplosion" type="RESOURCE"/>
+  <resource name="RocketExplosion" type="RESOURCE"/>
+</resources>

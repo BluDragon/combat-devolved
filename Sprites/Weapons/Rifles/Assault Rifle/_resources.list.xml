@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="AssaultRifleBaseS" type="RESOURCE"/>
+  <resource name="AssaultRifleBaseGrenadeS" type="RESOURCE"/>
+  <resource name="AssaultRifleFireS" type="RESOURCE"/>
+  <resource name="AssaultRifleBodyS" type="RESOURCE"/>
+  <resource name="AssaultRifleMeleeS" type="RESOURCE"/>
+  <resource name="AssaultRifleReloadS" type="RESOURCE"/>
+  <resource name="AssaultRifleReticleS" type="RESOURCE"/>
+  <resource name="AssaultRifleDropS" type="RESOURCE"/>
+</resources>

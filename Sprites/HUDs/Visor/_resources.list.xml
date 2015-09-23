@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="TopBorderS" type="RESOURCE"/>
+  <resource name="BottomBorderS" type="RESOURCE"/>
+  <resource name="ShieldWarningS" type="RESOURCE"/>
+  <resource name="AmmoWarningS" type="RESOURCE"/>
+</resources>

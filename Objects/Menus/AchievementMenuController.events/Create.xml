@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // initialize the cheevo controller
+
+    // define text and shadow colors
+    tColor = make_color_rgb(172, 195, 216);
+    sColor = make_color_rgb(61, 98, 131);
+    
+    // mouseovers
+    overBack = false;
+    overSettings = false;
+    overCheevo = -1;    // which cell the mouse is over
+    
+    // for future scrolling support
+    firstRow = 0;
+    // the selected cheevo for display (-1 = nothing)
+    selectedCheevo = -1;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

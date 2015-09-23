@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="SniperRifleBaseS" type="RESOURCE"/>
+  <resource name="SniperRifleBaseGrenadeS" type="RESOURCE"/>
+  <resource name="SniperRifleFireS" type="RESOURCE"/>
+  <resource name="SniperRifleBodyS" type="RESOURCE"/>
+  <resource name="SniperRifleMeleeS" type="RESOURCE"/>
+  <resource name="SniperRifleReloadS" type="RESOURCE"/>
+  <resource name="SniperRifleReticleS" type="RESOURCE"/>
+  <resource name="SniperRifleDropS" type="RESOURCE"/>
+  <resource name="SniperRifleZoomMaskS" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Collision Masks" type="GROUP"/>
+  <resource name="Grenades" type="GROUP"/>
+  <resource name="Explosions" type="GROUP"/>
+  <resource name="FirebombGlobSolidS" type="RESOURCE"/>
+  <resource name="NeedleS" type="RESOURCE"/>
+  <resource name="PelletS" type="RESOURCE"/>
+  <resource name="PlasmaPistolBoltS" type="RESOURCE"/>
+  <resource name="PlasmaRifleBoltS" type="RESOURCE"/>
+  <resource name="SpartanLaserPOIS" type="RESOURCE"/>
+  <resource name="SpikerBoltS" type="RESOURCE"/>
+  <resource name="RocketS" type="RESOURCE"/>
+  <resource name="BruteBombS" type="RESOURCE"/>
+</resources>

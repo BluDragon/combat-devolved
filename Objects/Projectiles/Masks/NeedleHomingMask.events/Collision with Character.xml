@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="Character">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if the bolt object is searching, check if the character is an enemy
+    if (object.searching) {
+        if (!onSameTeam(object.ownerPlayer, other.player)) {
+            if (object.nearestTarget != noone) {
+                // if the new target is closer
+                if (point_distance(x, y, other.x, other.y) &lt; object.nearestDist) {
+                    object.nearestTarget = other.id;
+                    object.nearestDist = point_distance(x, y, other.x, other.y);
+                }
+            } else {
+                // if there was no previous target
+                object.nearestTarget = other.id;
+                object.nearestDist = point_distance(x, y, other.x, other.y);
+            }
+        }
+    } else {
+        // not searching, check if target is still in the mask area
+        object.targetInMask = (object.targetInMask || (object.target == other.id));
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

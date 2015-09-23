@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    xoffset = -12;
+    yoffset = -5;
+    refireTime = 3;
+    xbarrel = 38;
+    ybarrel = 2;
+    event_inherited();
+    
+    weaponType = WEAPON_ASSAULTRIFLE;
+    
+    // ammo counters (maximum, magazines, etc)
+    maxAmmo = global.weaponMaxAmmo[weaponType];  // how much ammo you can have loaded in
+    maxReserve = global.weaponMaxReserve[weaponType];   // how much ammo you can have in reserve
+    ammoCount = maxAmmo;  // how much ammo you currently have loaded in
+    reserveAmmo = maxAmmo * 2;    // how much ammo you currently have in reserve
+    
+    // range in pixels
+    maxRange = 630;
+    
+    // damage
+    damage = 7;
+    shieldDamage = damage;
+    
+    // spread
+    muzzleSpread = 1;
+    
+    // reload stuff
+    reloadTime = 45;
+    
+    // sprites for the various states and layers
+    normalSprite = AssaultRifleBaseS;
+    grenadeSprite = AssaultRifleBaseGrenadeS;
+    recoilSprite = AssaultRifleFireS;
+    reloadSprite = AssaultRifleReloadS;
+    bodySprite = AssaultRifleBodyS;
+    meleeSprite = AssaultRifleMeleeS;
+    equipOnBack = true;
+    
+    // reticle
+    reticleSprite = AssaultRifleReticleS;
+    
+    // sound stuff
+    equipSound = global.AssaultRifleEquipSnd;
+    reloadSound = global.AssaultRifleReloadSnd;
+    ammoPickupSound = global.BattleRifleAmmoSnd;
+    
+    // animation length stuff
+    // since we now play recoil anims at 1:1 frame-wise, we don't need to calculate speed,
+    // just need to know how many frames there are
+    recoilAnimLength = sprite_get_number(recoilSprite) / 16;
+    reloadAnimLength = sprite_get_number(reloadSprite) / 16;
+    meleeAnimLength = sprite_get_number(meleeSprite) / 16;
+    
+    // whether or not to draw a shot this frame
+    drawShot = false;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

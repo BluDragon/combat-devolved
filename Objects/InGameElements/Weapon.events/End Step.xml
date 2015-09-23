@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (justShot) {
+    justShot = false;
+    
+    // set the alarm countdown for the recoil animation, using the refire time of the current fire event
+    // NOTE: Originally this used the recoilAnimLength variable, but so I can have special behaviour
+    // for specific weapons, this has been changed to fill the entire weapon's refire time period
+    alarm[6] = currentRefireTime;
+    
+    // do the ammo warning check if this is the player's weapon
+    if (ownerPlayer == global.myself) {
+        // but only if it's not an overheating weapon
+        if (!overheats) {
+            ammoWarningCheck(id, id == owner.weapons[2], false);
+        }
+    }
+}
+
+// set drawing depth if not active weapon
+// Note: This has to be done BEFORE the Draw event, because those ARE INDEED called IN ORDER OF DEPTH
+// so changing the depth WITHIN a Draw event causes the change to appear on the NEXT step &gt;.&lt;
+switch (getWeaponPosition(id)) {
+    case 0:
+        // unequipped
+        if (equipOnBack) {
+            depth = 1;
+        } else {
+            depth = -1;
+        }
+        break;
+    
+    case 1:
+        // equipped, on-top
+        depth = origDepth;
+        break;
+    
+    case 2:
+        // equipped, beneath
+        depth = 1;
+        break;
+}
+
+// overheating logic
+if (overheats) {
+    // cool down
+    heat = max(0, heat - 1);
+    
+    // if the gun was overheated and is now cooled, reset the overheated flag
+    if ((heat == 0) &amp;&amp; overheated) {
+        overheated = false;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

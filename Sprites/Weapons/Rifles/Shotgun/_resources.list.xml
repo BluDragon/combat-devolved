@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="ShotgunBaseS" type="RESOURCE"/>
+  <resource name="ShotgunBaseGrenadeS" type="RESOURCE"/>
+  <resource name="ShotgunFireS" type="RESOURCE"/>
+  <resource name="ShotgunBodyS" type="RESOURCE"/>
+  <resource name="ShotgunMeleeS" type="RESOURCE"/>
+  <resource name="ShotgunReloadS" type="RESOURCE"/>
+  <resource name="ShotgunReticleS" type="RESOURCE"/>
+  <resource name="ShotgunDropS" type="RESOURCE"/>
+</resources>

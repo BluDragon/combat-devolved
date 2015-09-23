@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    ammoCount = max(0, ammoCount - 1);
+    playsound(x, y, global.SpikerSnd);
+    
+    justShot = true;
+    readyToShoot = false;
+    weaponRefireTime();
+    
+    var shot, theta, uCAP;
+    
+    // angle stuff
+    theta = image_angle;
+    uCAP = false;
+    if (image_xscale &lt; 0) theta -= 180;
+    
+    // call the macro to calculate the shot point
+    weaponShotPoint();
+    // then do the up-close and personal check
+    hitscanCollision(x, y, theta, point_distance(x, y, shotx, shoty));
+    // if a victim was found spawn the projectiles directly on their body
+    if (hitType == Character) {
+        shotx = hitID.x;
+        shoty = hitID.y;
+        uCAP = true;
+    } else if (hitType == Helmet) {
+        shotx = hitID.owner.x;
+        shoty = hitID.owner.y;
+        uCAP = true;
+    }
+    
+    shot = instance_create(shotx, shoty, SpikerBolt);
+    shot.damage = damage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1);
+    shot.shieldDamage = damage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1);
+    shot.direction = owner.aimDirection + (random(6) - 3) * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldSpreadFactor, 1);
+    if (uCAP) {
+        shot.speed = 0;
+        shot.lifetime = 2;
+    } else {
+        shot.speed = 17 + random(2);
+        shot.lifetime = ceil(maxRange / shot.speed);
+    }
+    shot.alarm[0] = shot.lifetime;
+    shot.owner = owner;
+    shot.ownerPlayer = ownerPlayer;
+    shot.team = owner.team;
+    shot.weaponType = weaponType;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

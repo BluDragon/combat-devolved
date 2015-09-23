@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Collision Maps" type="GROUP"/>
+  <resource name="HUDs" type="GROUP"/>
+  <resource name="MapElements" type="GROUP"/>
+  <resource name="Obstacles" type="GROUP"/>
+  <resource name="InGameElements" type="GROUP"/>
+  <resource name="GameElements" type="GROUP"/>
+  <resource name="Updater" type="GROUP"/>
+  <resource name="Alternative Sprites" type="GROUP"/>
+  <resource name="Achievements" type="GROUP"/>
+  <resource name="DevMessagesCheckerS" type="RESOURCE"/>
+</resources>

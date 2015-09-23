@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">bolt ricochet</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if the bolt has not yet ricocheted
+    if (!reflected) {
+        reflected = true;
+        
+        // move the grenade to contact with the obstacle
+        move_contact_solid(direction, speed);
+                
+        // crude physics adapted from characterHitObstacle
+        if (vspeed != 0 &amp;&amp; !place_free(x, y + sign(vspeed))) {
+            // we hit a ceiling or floor
+            vspeed = -vspeed;
+        }
+
+        if (hspeed != 0 &amp;&amp; !place_free(x + sign(hspeed), y)) {
+            // we hit a wall
+            hspeed = -hspeed;
+        }
+    } else {
+        // create a fading particle that replaces the object
+        var part;
+        move_contact_solid(direction, speed);
+        
+        // define the particle and register it
+        part = part_type_create();
+        registerTempParticle(part, 100, 100);
+        part_type_sprite(part, SpikerBoltS, false, false, false);
+        part_type_alpha3(part, 1, 1, 0);
+        part_type_orientation(part, direction, direction, 0, 0, false);
+        
+        // spawn it
+        part_particles_create(global.weaponPS, x, y, part, 1);
+        
+        // die
+        instance_destroy();
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

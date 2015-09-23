@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Magnum" type="RESOURCE"/>
+  <resource name="Mauler" type="RESOURCE"/>
+  <resource name="PlasmaPistol" type="RESOURCE"/>
+  <resource name="Spiker" type="RESOURCE"/>
+</resources>

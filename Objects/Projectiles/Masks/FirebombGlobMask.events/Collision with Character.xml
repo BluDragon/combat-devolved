@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="Character">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // flames are indiscriminate in who they hurt
+    
+    // figure out how much damage to deal
+    damage = max(damageMin + (1 - distance_to_object(other) / damageRadius) * (damageMax - damageMin), damageMin);
+    shieldDamage = damage;
+    
+    // common damage
+    weaponDealDamage(other.id, shieldDamage, damage, true, false, false, ownerPlayer, weaponType);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

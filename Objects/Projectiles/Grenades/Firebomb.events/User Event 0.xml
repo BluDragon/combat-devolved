@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">environment collision</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var sid, i, glob, mask, globDist;
+    
+    // spawn distance for the globs
+    globDist = 20;
+    
+    // play the detonation sound
+    sid = playsound(x, y, global.FirebombExplosionSnd);
+    registerAutopanSound(sid, x, y);
+    
+    // create the 6 firebomb globs in a circle around the point of detonation
+    for (i = 0; i &lt; 6; i += 1) {
+        // spawn the glob at the detonation origin to start
+        glob = instance_create(x, y, FirebombGlob);
+        glob.owner = owner;
+        glob.ownerPlayer = ownerPlayer;
+        glob.team = team;
+        
+        // figure out where we want to move the glob to
+        globX = x + lengthdir_x(globDist, 45 + i * 60);
+        globY = y + lengthdir_y(globDist, 45 + i * 60);
+        // move it there if the place would be free (so globs won't spawn in walls)
+        with (glob) {
+            if (place_free(other.globX, other.globY)) {
+                x = other.globX;
+                y = other.globY;
+            }
+        }
+        
+        // impart some of the velocity of the grenade onto the globs
+        // as of right now, impart all of it
+        glob.direction = direction;
+        glob.speed = speed;
+        
+        // create the accompanying mask for the glob
+        // and then scale it properly
+        mask = instance_create(glob.x, glob.y, FirebombGlobMask);
+        glob.mask = mask;
+        mask.image_xscale = damageRadius / (mask.sprite_width / 2);
+        mask.image_yscale = damageRadius / (mask.sprite_height / 2);
+        mask.owner = owner;
+        mask.ownerPlayer = ownerPlayer;
+        mask.team = team;
+        mask.weaponType = weaponType;
+        mask.damageRadius = damageRadius;
+        mask.damageMin = damageMin;
+        mask.damageMax = damageMax;
+    }
+    
+    // destroy the instance
+    instance_destroy();
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

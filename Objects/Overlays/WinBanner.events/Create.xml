@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// modified to add the kill log entry on team victory
+if(global.winners == TEAM_RED) {
+    teamoffset = 0;
+    recordEventInLog(10, TEAM_RED);
+} else if(global.winners == TEAM_BLUE) {
+    teamoffset = 1;
+    recordEventInLog(10, TEAM_BLUE);
+} else {
+    teamoffset = 2;
+    recordEventInLog(10, TEAM_SPECTATOR);
+}
+
+if(global.myself.team != global.winners) {
+    sound = VOX_GAMELOSE;
+    global.myself.humiliated = 1;
+} else {
+    // winning team
+    sound = VOX_GAMEWIN;
+    /*
+    // increment the game win cheevos
+    achieveIncrement(ACH_GRADUATE);
+    achieveIncrement(ACH_UNSCSPARTAN);
+    achieveIncrement(ACH_SPARTANOFFICER);
+    */
+}
+
+with (Player) {
+    if team == global.winners
+        humiliated = 0;
+    else {
+        humiliated = 1;
+    }
+}
+
+if(!instance_exists(ArenaHUD)) {
+    announcerQueue(sound);
+    AudioControlPlaySong(-1, false);
+}
+
+instance_destroy();
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

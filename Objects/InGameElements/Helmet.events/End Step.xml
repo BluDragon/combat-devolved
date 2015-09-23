@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // angle the head object, so the collision box rotates with it
+    var headAngle;
+    if (((owner.aimDirection + 270) mod 360) &gt; 180) {
+        image_xscale = 1;
+        headAngle = owner.aimDirection;
+        if ((headAngle &gt; 180) &amp;&amp; ((headAngle - 360) &lt; global.headMinAngle)) headAngle = global.headMinAngle;
+        if ((headAngle &lt; 180) &amp;&amp; (headAngle &gt; global.headMaxAngle)) headAngle = global.headMaxAngle;
+    } else {
+        image_xscale = -1;
+        headAngle = owner.aimDirection;
+        if (headAngle &lt; (180 - global.headMaxAngle)) headAngle = 180 - global.headMaxAngle;
+        if (headAngle &gt; (180 - global.headMinAngle)) headAngle = 180 - global.headMinAngle;
+        headAngle += 180;
+    }
+    
+    image_angle = headAngle;
+    
+    // move the head object to be in the proper place relative to the owner's body
+    x = owner.x + xoffset;
+    y = owner.y + yoffset + owner.bobAmt;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="H2DLib Functions" type="GROUP"/>
+  <resource name="LinkH2DLib" type="RESOURCE"/>
+  <resource name="UnlinkH2DLib" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if we're stickied...
+    if (stickied) {
+        // and a victim still exists
+        if (stickyID != -1) {
+            if (instance_exists(stickyID)) {
+                // set our position accordingly
+                if (stickyType == Character) {
+                    x = stickyID.x + stickyX * stickyID.image_xscale;
+                    y = stickyID.y + stickyY + stickyID.bobAmt;
+                } else if (stickyType == Helmet) {
+                    // stuck to a helmet
+                    x = stickyID.x + stickyID.image_xscale * lengthdir_x(point_distance(0, 0, stickyX, stickyY), stickyID.image_angle);
+                    y = stickyID.y + lengthdir_y(point_distance(0, 0, stickyX, stickyY), stickyID.image_angle * stickyID.image_xscale);
+                }
+            } else {
+                // victim died
+                stickyID = -1;
+                stickied = false;
+                depth = -5; // default draw depth
+            }
+        }
+    } else if (!stickied) &amp;&amp; (!armed) {
+        // trail effect
+        var em;
+        
+        // spew out some particles
+        em = part_emitter_create(global.weaponPS);
+        part_emitter_region(global.weaponPS, em, xprevious, x, yprevious, y, ps_shape_line, ps_distr_linear);
+        part_emitter_burst(global.weaponPS, em, global.spikeGPuffTrailPT, 3);
+        part_emitter_destroy(global.weaponPS, em);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Common" type="GROUP"/>
+  <resource name="Plasma Grenade" type="GROUP"/>
+  <resource name="Firebomb" type="GROUP"/>
+  <resource name="Plasma Pistol" type="GROUP"/>
+  <resource name="Plasma Rifle" type="GROUP"/>
+  <resource name="Fuel Rod Cannon" type="GROUP"/>
+  <resource name="Spartan Laser" type="GROUP"/>
+  <resource name="Needler" type="GROUP"/>
+  <resource name="Brute Shot" type="GROUP"/>
+  <resource name="Spike Grenade" type="GROUP"/>
+  <resource name="Beam Rifle" type="GROUP"/>
+</resources>

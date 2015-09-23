@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DESTROY" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // destroy all remaining particle types
+    while (ds_list_size(tempParticlesID) &gt; 0) {
+        part_type_destroy(ds_list_find_value(tempParticlesID, 0));
+        ds_list_delete(tempParticlesID, 0);
+        ds_list_delete(tempParticlesLife, 0);
+    }
+    
+    // destroy the lists
+    ds_list_destroy(tempParticlesID);
+    ds_list_destroy(tempParticlesLife);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

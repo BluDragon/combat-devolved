@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // set the defaults for the grenade
+    armed = false;      // the grenade is armed once it hits a surface or enemy character
+    fuseLength = 30;    // the number of frames it takes for the grenade to explode once armed
+    damageRadius = 60;
+    damageMax = 150;
+    damageMin = 60;
+    
+    weaponType = WEAPON_FRAGGRENADE;
+    
+    bounceCoefficient = 0.5;    // frags are bouncy!
+    
+    // number of frames without a collision
+    airtime = 0;
+    
+    // sounds
+    bounceSound = global.FragGrenadeBounceSnd;
+    armedSound = -1;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

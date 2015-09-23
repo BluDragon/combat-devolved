@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Gibbage" type="GROUP"/>
+  <resource name="Helmet" type="RESOURCE"/>
+  <resource name="Player" type="RESOURCE"/>
+  <resource name="Character" type="RESOURCE"/>
+  <resource name="Weapon" type="RESOURCE"/>
+  <resource name="WeaponDrop" type="RESOURCE"/>
+  <resource name="PlayerControl" type="RESOURCE"/>
+  <resource name="SpeechBubbleO" type="RESOURCE"/>
+  <resource name="SentryTurret" type="RESOURCE"/>
+  <resource name="SentryGibs" type="RESOURCE"/>
+  <resource name="Sentry" type="RESOURCE"/>
+  <resource name="DeadGuy" type="RESOURCE"/>
+  <resource name="NoticeO" type="RESOURCE"/>
+  <resource name="Spectator" type="RESOURCE"/>
+  <resource name="JoiningPlayer" type="RESOURCE"/>
+  <resource name="Balancer" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="ArmorWalkColorS" type="RESOURCE"/>
+  <resource name="ArmorWalkOutlineS" type="RESOURCE"/>
+  <resource name="ArmorWalkShieldsS" type="RESOURCE"/>
+</resources>

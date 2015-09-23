@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="CarbineBaseS" type="RESOURCE"/>
+  <resource name="CarbineBaseGrenadeS" type="RESOURCE"/>
+  <resource name="CarbineFireS" type="RESOURCE"/>
+  <resource name="CarbineBodyS" type="RESOURCE"/>
+  <resource name="CarbineMeleeS" type="RESOURCE"/>
+  <resource name="CarbineReloadS" type="RESOURCE"/>
+  <resource name="CarbineReticleS" type="RESOURCE"/>
+  <resource name="CarbineDropS" type="RESOURCE"/>
+  <resource name="CarbineZoomMaskS" type="RESOURCE"/>
+</resources>

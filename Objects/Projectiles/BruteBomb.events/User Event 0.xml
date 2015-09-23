@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">bomb ricochet</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if the bomb can ricochet
+    if (ricochet) {
+        // just this once!
+        ricochet = false;
+        
+        // move the grenade to contact with the obstacle
+        move_contact_solid(direction, speed);
+                
+        // crude physics adapted from characterHitObstacle
+        if (vspeed != 0 &amp;&amp; !place_free(x, y + sign(vspeed))) {
+            // we hit a ceiling or floor
+            vspeed = -vspeed;
+        }
+
+        if (hspeed != 0 &amp;&amp; !place_free(x + sign(hspeed), y)) {
+            // we hit a wall
+            hspeed = -hspeed;
+        }
+        
+        // set the lifetime to 0.2 seconds
+        alarm[0] = 6;
+    } else {
+        // no more ricochet, so blow up
+        event_user(1);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

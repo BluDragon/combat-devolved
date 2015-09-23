@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if we're still searching for a target
+    if (searching) {
+        if (nearestTarget != noone) {
+            // a target was found, start homing
+            target = nearestTarget;
+            nearestTarget = noone;
+            nearestDist = 0;
+            searching = false;
+        }
+    }
+    // if we have a target
+    if (!searching) {
+        // check if the target still exists
+        if (instance_exists(target)) {
+            // target still exists, try to move towards it
+            var relDir, targDir;
+            
+            targDir = point_direction(x, y, target.x, target.y);
+            // calculate the relative angle between the two
+            relDir = radtodeg(arctan2(sin(degtorad(targDir - direction)), cos(degtorad(targDir - direction))));
+            // move towards the target angle as much as possible
+            if (relDir &gt; 0) {
+                direction += min(relDir, maxTurn);
+            } else {
+                direction += max(relDir, -maxTurn);
+            }
+        } else {
+            // the target doesn't exist anymore, start searching again
+            target = noone;
+            searching = true;
+        }
+    }
+    
+    //We don't want it to be almost invisible if it's still "active", so
+    //we have it as if 0.3 is its lower limit
+    image_alpha = (alarm[0] / lifetime) / 2 + 0.5;
+    
+    // turn to face where we're facing
+    image_angle = direction;
+    mask.image_angle = image_angle;
+    
+    targetInMask = false;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

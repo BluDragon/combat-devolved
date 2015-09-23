@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // initialize variables used for tracking player-exclusive things (i.e. sound instances)
+    
+    // shield warning sound instances
+    sndShieldsLow = -1;
+    sndShieldsOff = -1;
+    sndShieldsRecharge = -1;
+    
+    // HUD flash speed for ammo and health HUDs
+    hudFlashSpeed = 10;
+    
+    // ammo flashing for the two sides
+    ammoFlashLeft = false;
+    ammoFlashLeftFrame = 0;
+    ammoFlashRight = false;     // whether the ammo should be flashing right now
+    ammoFlashRightFrame = 0;    // incremental counter for ammo flash
+    
+    // weapon pickups
+    nearestPickupWeapon = noone;
+    nearestDualWeapon = noone;
+    
+    // ammo pickup number effect
+    ammoPickupLeftValue = 0;    // value to show for the ammo pickup number
+    ammoPickupLeftTimer = -1;   // timer for the ammo pickup number animation
+    ammoPickupRightValue = 0;
+    ammoPickupRightTimer = -1;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

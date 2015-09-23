@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="22">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    write_ushort(global.serializeBuffer, ammoCount);
+    write_ushort(global.serializeBuffer, reserveAmmo);
+    write_ubyte(global.serializeBuffer, readyToShoot);
+    write_ubyte(global.serializeBuffer, alarm[0]);
+    write_ubyte(global.serializeBuffer, alarm[4]);  // reload timer
+    write_ubyte(global.serializeBuffer, alarm[8]);  // melee timer
+    write_ubyte(global.serializeBuffer, floor(refireTimeOverflow * 100));
+    
+    // function-specific data (i.e. charging, overheating)
+    if (chargesUp) {
+        // weapon charges up
+        write_ubyte(global.serializeBuffer, chargeLevel);
+    }
+    if (overheats) {
+        // weapon overheats
+        write_ubyte(global.serializeBuffer, heat);
+        write_ubyte(global.serializeBuffer, overheated);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

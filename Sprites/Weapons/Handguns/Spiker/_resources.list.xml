@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="SpikerBaseS" type="RESOURCE"/>
+  <resource name="SpikerBaseGrenadeS" type="RESOURCE"/>
+  <resource name="SpikerBaseDWS" type="RESOURCE"/>
+  <resource name="SpikerFireS" type="RESOURCE"/>
+  <resource name="SpikerFireDWS" type="RESOURCE"/>
+  <resource name="SpikerBodyS" type="RESOURCE"/>
+  <resource name="SpikerMeleeS" type="RESOURCE"/>
+  <resource name="SpikerReloadS" type="RESOURCE"/>
+  <resource name="SpikerReticleS" type="RESOURCE"/>
+  <resource name="SpikerDropS" type="RESOURCE"/>
+</resources>

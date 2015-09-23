@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="SmokeBallS" type="RESOURCE"/>
+  <resource name="SmokeBurstS" type="RESOURCE"/>
+  <resource name="SmokeBlobS" type="RESOURCE"/>
+  <resource name="FlamePartS" type="RESOURCE"/>
+</resources>

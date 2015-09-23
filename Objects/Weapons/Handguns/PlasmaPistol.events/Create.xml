@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    xoffset = -10;
+    yoffset = -4;
+    xoffsetDW = 7;      // these values are added to the original X and Y offsets to get
+    yoffsetDW = -2;     // the left hand offset
+    xbarrel = 31;
+    ybarrel = 4;
+    
+    refireTime = 2;     // as fast as you can click, basically
+    event_inherited();
+    
+    weaponType = WEAPON_PLASMAPISTOL;
+    
+    // ammo counters (maximum, magazines, etc)
+    maxAmmo = global.weaponMaxAmmo[weaponType];  // how much ammo you can have loaded in
+    maxReserve = global.weaponMaxReserve[weaponType];   // how much ammo you can have in reserve
+    ammoCount = maxAmmo;  // how much ammo you currently have loaded in
+    reserveAmmo = 0;    // how much ammo you currently have in reserve
+    
+    // range in pixels
+    maxRange = 450;
+    
+    // damage is special for plasma bolts, this entry is a dummy entry
+    damage = 2;
+    damageBleeds = false;
+    
+    // sprites for the various states and layers
+    normalSprite = PlasmaPistolBaseS;
+    grenadeSprite = PlasmaPistolBaseGrenadeS;
+    recoilSprite = PlasmaPistolFireS;
+    reloadSprite = -1;
+    bodySprite = PlasmaPistolBodyS;
+    meleeSprite = PlasmaPistolMeleeS;
+    dualSprite = PlasmaPistolBaseDWS;
+    dualRecoilSprite = PlasmaPistolFireDWS;
+    cooldownSprite = PlasmaPistolCooldownS;
+    dualCooldownSprite = PlasmaPistolCooldownDWS;
+    
+    // reticle
+    reticleSprite = PlasmaPistolReticleS;
+    
+    // sound stuff
+    chargingSound = global.PlasmaPistolChargingSnd;
+    chargedSound = global.PlasmaPistolChargedSnd;
+    
+    // recoil stuff
+    // since we now play recoil anims at 1:1 frame-wise, we don't need to calculate speed,
+    // just need to know how many frames there are
+    recoilAnimLength = sprite_get_number(recoilSprite) / 16;
+    reloadAnimLength = sprite_get_number(reloadSprite) / 16;
+    meleeAnimLength = sprite_get_number(meleeSprite) / 16;
+    dualRecoilAnimLength = sprite_get_number(dualRecoilSprite) / 32;
+    cooldownAnimLength = sprite_get_number(cooldownSprite) / 16;
+    dualCooldownAnimLength = sprite_get_number(dualCooldownSprite) / 32;
+    
+    // charging stuff
+    chargesUp = true;
+    maxCharge = 30;     // weapon is fully charged in 1 seconds
+    
+    // heat stuff, for cooldown periods --
+    // 1 heat is lost per frame, each normal shot adds some heat, a charged shot maxes it out
+    overheats = true;
+    maxHeat = 56;
+    
+    // particle system stuff
+    // the emitter for the smoke
+    smokeEM = part_emitter_create(global.weaponPS);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

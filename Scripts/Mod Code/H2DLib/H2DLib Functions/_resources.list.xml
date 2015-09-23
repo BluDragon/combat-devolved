@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="getForegroundWindow" type="RESOURCE"/>
+  <resource name="findLineIntersection" type="RESOURCE"/>
+  <resource name="getLineIntersectX" type="RESOURCE"/>
+  <resource name="getLineIntersectY" type="RESOURCE"/>
+</resources>

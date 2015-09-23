@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="FlamethrowerBaseS" type="RESOURCE"/>
+  <resource name="FlamethrowerFireS" type="RESOURCE"/>
+  <resource name="FlamethrowerReticleS" type="RESOURCE"/>
+  <resource name="FlamethrowerDropS" type="RESOURCE"/>
+</resources>

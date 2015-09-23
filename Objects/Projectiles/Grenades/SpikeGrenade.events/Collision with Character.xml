@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="Character">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (!stickied) {
+    if (!onSameTeam(ownerPlayer, other.player) || (ownerPlayer == other.player)) {
+        depth = -2; // draw under weapons, over helmets
+        
+        stickyID = other.id;
+        // figure out where we got stuck relative to the victim's origin
+        stickyX = (x - other.x) * other.image_xscale;
+        stickyY = y - other.y;
+        // if it gets stuck below the torso, restrict it to within the torso region
+        if (stickyY &gt; 15) then stickyY = 15;
+        stickyType = Character;
+        
+        // common arming
+        event_user(0);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

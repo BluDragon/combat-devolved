@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="MVPA" type="RESOURCE"/>
+  <resource name="NextTimeBuddyA" type="RESOURCE"/>
+  <resource name="DoubleKillA" type="RESOURCE"/>
+  <resource name="TripleKillA" type="RESOURCE"/>
+  <resource name="OverkillA" type="RESOURCE"/>
+  <resource name="KillFrenzyA" type="RESOURCE"/>
+  <resource name="GraduateA" type="RESOURCE"/>
+  <resource name="UNSCSpartanA" type="RESOURCE"/>
+  <resource name="SpartanOfficerA" type="RESOURCE"/>
+  <resource name="PostMortemA" type="RESOURCE"/>
+  <resource name="MeatShieldA" type="RESOURCE"/>
+  <resource name="CatchAllA" type="RESOURCE"/>
+  <resource name="ReturnSenderA" type="RESOURCE"/>
+  <resource name="IcarusA" type="RESOURCE"/>
+  <resource name="StopDropGoA" type="RESOURCE"/>
+  <resource name="RainingMenA" type="RESOURCE"/>
+  <resource name="PinkMistA" type="RESOURCE"/>
+  <resource name="RespawnFunA" type="RESOURCE"/>
+  <resource name="SteppinRazorA" type="RESOURCE"/>
+  <resource name="HeadHonchoA" type="RESOURCE"/>
+  <resource name="GameIconA" type="RESOURCE"/>
+</resources>

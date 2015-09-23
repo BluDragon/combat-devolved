@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="NeedlerBaseS" type="RESOURCE"/>
+  <resource name="NeedlerBaseGrenadeS" type="RESOURCE"/>
+  <resource name="NeedlerBaseDWS" type="RESOURCE"/>
+  <resource name="NeedlerFireS" type="RESOURCE"/>
+  <resource name="NeedlerFireDWS" type="RESOURCE"/>
+  <resource name="NeedlerBodyS" type="RESOURCE"/>
+  <resource name="NeedlerMeleeS" type="RESOURCE"/>
+  <resource name="NeedlerReloadS" type="RESOURCE"/>
+  <resource name="NeedlerReticleS" type="RESOURCE"/>
+  <resource name="NeedlerDropS" type="RESOURCE"/>
+  <resource name="NeedlerEmptyBaseS" type="RESOURCE"/>
+  <resource name="NeedlerEmptyBaseGrenadeS" type="RESOURCE"/>
+  <resource name="NeedlerEmptyBaseDWS" type="RESOURCE"/>
+  <resource name="NeedlerEmptyMeleeS" type="RESOURCE"/>
+</resources>

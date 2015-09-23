@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{    
+    // we want to wait at least 1 step before we do anything, to allow the first drawing event to occur
+    stepHasRun = false;
+    
+    // whether we have completed the local save/load function
+    localComplete = false;
+    
+    // we're not all done until we say we are!
+    done = false;
+    
+    // animation step
+    animStep = 0;
+    
+    // download handle
+    handle = -1;
+    
+    loggedIn = false;
+    tempFile = "temp.txt";
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

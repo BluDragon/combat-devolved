@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="WeaponCreate" type="RESOURCE"/>
+  <resource name="initWeapons" type="RESOURCE"/>
+  <resource name="drawWeapon" type="RESOURCE"/>
+  <resource name="hitscanCollision" type="RESOURCE"/>
+  <resource name="weaponShotPoint" type="RESOURCE"/>
+  <resource name="weaponRefireTime" type="RESOURCE"/>
+  <resource name="meleeCollisionSearch" type="RESOURCE"/>
+  <resource name="weaponDealDamage" type="RESOURCE"/>
+  <resource name="explosiveDamage" type="RESOURCE"/>
+  <resource name="meleeDealDamage" type="RESOURCE"/>
+  <resource name="addMuzzleJump" type="RESOURCE"/>
+  <resource name="limitMeleeCursor" type="RESOURCE"/>
+  <resource name="getWeaponPosition" type="RESOURCE"/>
+</resources>

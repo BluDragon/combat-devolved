@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="FMOD" type="GROUP"/>
+  <resource name="H2DLib" type="GROUP"/>
+  <resource name="Sound" type="GROUP"/>
+  <resource name="HUD code" type="GROUP"/>
+  <resource name="Announcer" type="GROUP"/>
+  <resource name="Achievements" type="GROUP"/>
+  <resource name="INI Functions" type="GROUP"/>
+  <resource name="Chat" type="GROUP"/>
+  <resource name="Weapons" type="GROUP"/>
+  <resource name="Character" type="GROUP"/>
+  <resource name="Debug Functions" type="GROUP"/>
+  <resource name="Macros" type="GROUP"/>
+  <resource name="Projectiles" type="GROUP"/>
+  <resource name="Particle Systems" type="GROUP"/>
+  <resource name="Maps" type="GROUP"/>
+  <resource name="initHeads" type="RESOURCE"/>
+  <resource name="playIntelSnd" type="RESOURCE"/>
+  <resource name="initCustomArmor" type="RESOURCE"/>
+  <resource name="draw_text_shadow" type="RESOURCE"/>
+  <resource name="draw_text_outline" type="RESOURCE"/>
+  <resource name="string_time" type="RESOURCE"/>
+  <resource name="flamingHelmet" type="RESOURCE"/>
+  <resource name="string_trim" type="RESOURCE"/>
+  <resource name="loadMusic" type="RESOURCE"/>
+  <resource name="playMapAmbience" type="RESOURCE"/>
+  <resource name="Stealth Tests" type="GROUP"/>
+</resources>

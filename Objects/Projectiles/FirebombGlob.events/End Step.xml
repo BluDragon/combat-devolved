@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if we're stickied and a victim exists
+    if (stickied) &amp;&amp; (stickyID != -1) {
+        if (instance_exists(stickyID)) {
+            // set our position accordingly
+            x = stickyID.x + stickyX * stickyID.image_xscale;
+            y = stickyID.y + stickyY + stickyID.bobAmt;
+        } else {
+            // victim died
+            stickyID = -1;
+            falling = true;
+        }
+    }
+    // update the mask's position
+    mask.x = x;
+    mask.y = y;
+    
+    // update the emitter region
+    part_emitter_region(global.weaponPS, emitter, x - pRad, x + pRad, y - pRad, y + pRad, ps_shape_ellipse, ps_distr_gaussian);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

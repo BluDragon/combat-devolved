@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // draw the text describing the feature procedure
+    draw_set_valign(fa_top);
+    draw_set_halign(fa_center);
+    draw_text_shadow(400, 40,
+        "To display your unlocked achievements in your forum signature," + chr(13) +
+        "sign-in to http://sumochi.ajf.me/ using your forum account." + chr(13) +
+        "After that, sign-in again below to begin logging your achievements for display." + chr(13) + chr(13) +
+        "* Note: You do not have to log-in to unlock achievements.",
+        1, 1, 0, tColor, sColor, 1);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

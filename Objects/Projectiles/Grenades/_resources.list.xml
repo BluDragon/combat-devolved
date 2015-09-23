@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="FragGrenade" type="RESOURCE"/>
+  <resource name="PlasmaGrenade" type="RESOURCE"/>
+  <resource name="Firebomb" type="RESOURCE"/>
+  <resource name="SpikeGrenade" type="RESOURCE"/>
+</resources>

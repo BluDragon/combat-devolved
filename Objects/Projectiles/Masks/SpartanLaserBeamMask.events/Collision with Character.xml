@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="Character">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var xIntersect, yIntersect;
+    
+    // make sure the collision is not with the owner or ally
+    if (other.id != owner) &amp;&amp; (!onSameTeam(ownerPlayer, other.player)) {
+        // if the victim has already been hit, then exit
+        if (ds_list_find_index(victimsHit, other.id) != -1) exit;
+        
+        // add the victim to the list
+        ds_list_add(victimsHit, other.id);
+
+        // spawn the beam explosion collision mask in the approximate proper location
+        findLineIntersection(x, y, -image_angle, other.x, other.y, -image_angle + 90);
+        xIntersect = getLineIntersectX();
+        yIntersect = getLineIntersectY();
+        
+        var blastMask;
+        
+        blastMask = instance_create(xIntersect, yIntersect, SpartanLaserBlastMask);
+        blastMask.damage = damage;
+        blastMask.shieldDamage = shieldDamage;
+        blastMask.damageBleeds = damageBleeds;
+        blastMask.owner = owner;
+        blastMask.ownerPlayer = ownerPlayer;
+        blastMask.team = team;
+        blastMask.weaponType = WEAPON_SPARTANLASER;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

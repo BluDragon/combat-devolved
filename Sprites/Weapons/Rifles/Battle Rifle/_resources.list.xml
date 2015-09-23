@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="BattleRifleBaseS" type="RESOURCE"/>
+  <resource name="BattleRifleBaseGrenadeS" type="RESOURCE"/>
+  <resource name="BattleRifleFireS" type="RESOURCE"/>
+  <resource name="BattleRifleBodyS" type="RESOURCE"/>
+  <resource name="BattleRifleMeleeS" type="RESOURCE"/>
+  <resource name="BattleRifleReloadS" type="RESOURCE"/>
+  <resource name="BattleRifleReticleS" type="RESOURCE"/>
+  <resource name="BattleRifleDropS" type="RESOURCE"/>
+  <resource name="BattleRifleZoomMaskS" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // draw the plasma bolt effects
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(PlasmaPistolChargedBoltS, 0, x, y, 0.6, 0.6, image_angle, c_white, image_alpha);
+    draw_sprite_ext(PlasmaPistolChargedBoltS, 0, x, y, 0.4, 0.4, image_angle, c_white, image_alpha);
+    draw_sprite_ext(PlasmaPistolChargedSparksS, lifetime - alarm[0], x, y, 0.9, 0.6, image_angle, c_white, image_alpha);
+    draw_set_blend_mode(bm_normal);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

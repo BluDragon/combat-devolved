@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Walking" type="GROUP"/>
+  <resource name="Crouching" type="GROUP"/>
+  <resource name="Lowering" type="GROUP"/>
+  <resource name="Shield Effects" type="GROUP"/>
+</resources>

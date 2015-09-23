@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="PlasmaPistolSmokeS" type="RESOURCE"/>
+  <resource name="PlasmaPistolRingS" type="RESOURCE"/>
+  <resource name="PlasmaPistolLineS" type="RESOURCE"/>
+  <resource name="PlasmaPistolGlowS" type="RESOURCE"/>
+  <resource name="PlasmaPistolChargedBoltS" type="RESOURCE"/>
+  <resource name="PlasmaPistolChargedSparksS" type="RESOURCE"/>
+  <resource name="PlasmaPistolPOISparksS" type="RESOURCE"/>
+</resources>

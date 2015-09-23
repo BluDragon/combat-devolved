@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<settings>
+  <graphics>
+    <scalingPercent>-1</scalingPercent>
+    <displayCursor>false</displayCursor>
+    <useVsync>false</useVsync>
+    <interpolateColors>false</interpolateColors>
+    <colorOutsideRoom>000000</colorOutsideRoom>
+  </graphics>
+  <windowing>
+    <startFullscreen>false</startFullscreen>
+    <dontDrawBorder>false</dontDrawBorder>
+    <allowWindowResize>true</allowWindowResize>
+    <alwaysOnTop>false</alwaysOnTop>
+    <dontShowButtons>false</dontShowButtons>
+    <switchVideoMode>false</switchVideoMode>
+  </windowing>
+  <splashImage>
+    <showCustom>true</showCustom>
+    <partiallyTransparent>false</partiallyTransparent>
+    <alphaTransparency>255</alphaTransparency>
+  </splashImage>
+  <progressBar>
+    <mode>LOADBAR_NONE</mode>
+    <scaleImage>true</scaleImage>
+  </progressBar>
+  <keys>
+    <letF1ShowGameInfo>false</letF1ShowGameInfo>
+    <letF4SwitchFullscreen>false</letF4SwitchFullscreen>
+    <letF5SaveF6Load>false</letF5SaveF6Load>
+    <letF9Screenshot>false</letF9Screenshot>
+    <letEscEndGame>false</letEscEndGame>
+    <treatCloseAsEscape>false</treatCloseAsEscape>
+  </keys>
+  <errors>
+    <displayErrors>true</displayErrors>
+    <writeToLog>true</writeToLog>
+    <abortOnError>false</abortOnError>
+    <treatUninitializedAsZero>false</treatUninitializedAsZero>
+  </errors>
+  <gameInfo>
+    <gameId>907152</gameId>
+    <author>Faucet Software</author>
+    <version>2.4</version>
+    <information/>
+    <versionMajor>2</versionMajor>
+    <versionMinor>4</versionMinor>
+    <versionRelease>0</versionRelease>
+    <versionBuild>0</versionBuild>
+    <company>Faucet Software</company>
+    <product>Gang Garrison 2</product>
+    <copyright>Copyright © 2011 Faucet Software</copyright>
+    <description/>
+    <directPlayGuid>62130cf64e5cf4be1f2e1c44c2427da6</directPlayGuid>
+  </gameInfo>
+  <system>
+    <processPriority>PRIORITY_NORMAL</processPriority>
+    <disableScreensavers>true</disableScreensavers>
+    <freezeOnLoseFocus>false</freezeOnLoseFocus>
+  </system>
+  <includes>
+    <overwriteExisting>false</overwriteExisting>
+    <removeAtGameEnd>false</removeAtGameEnd>
+    <useTempFolder>false</useTempFolder>
+  </includes>
+</settings>

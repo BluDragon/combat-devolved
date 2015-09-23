@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    xoffset = view_xview[0];
+    yoffset = view_yview[0];
+    xsize = view_wview[0];
+    ysize = view_hview[0];
+    
+    if distance_to_point(xoffset + xsize / 2, yoffset + ysize / 2) &gt; 800 exit;
+
+    var xr, yr;
+    
+    xr = round(x);
+    yr = round(y);
+
+    draw_sprite_ext(DeadBodyColor, helmetType, xr, yr, image_xscale, image_yscale, image_angle, global.customColor[bodyColor], 1);
+    draw_sprite_ext(DeadHelmetColor, helmetType, xr, yr, image_xscale, image_yscale, image_angle, global.customColor[helmetColor], 1);
+    draw_sprite_ext(DeadBodyOutline, helmetType, xr, yr, image_xscale, image_yscale, image_angle, c_white, 1);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

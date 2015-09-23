@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="initChat" type="RESOURCE"/>
+  <resource name="drawChat" type="RESOURCE"/>
+  <resource name="drawChatSurfaces" type="RESOURCE"/>
+  <resource name="addChatMessage" type="RESOURCE"/>
+  <resource name="chatHandlePlayerLeave" type="RESOURCE"/>
+</resources>

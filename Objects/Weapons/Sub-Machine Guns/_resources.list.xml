@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Needler" type="RESOURCE"/>
+  <resource name="PlasmaRifle" type="RESOURCE"/>
+  <resource name="SMG" type="RESOURCE"/>
+</resources>

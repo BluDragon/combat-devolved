@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // smoke trail effect
+    if (drawShot) {
+        drawShot = false;
+        
+        var em, num, trailPT, theta;
+        
+        theta = point_direction(shotx, shoty, shotx2, shoty2);
+        
+        // create and register the temporary particle
+        trailPT = part_type_create();
+        registerTempParticle(trailPT, 30, 40);
+        part_type_shape(trailPT, pt_shape_smoke);
+        part_type_color1(trailPT, make_color_rgb(191, 191, 191));
+        part_type_scale(trailPT, 0.5, 0.0625);
+        part_type_alpha2(trailPT, 1, 0);
+        part_type_orientation(trailPT, theta, theta, 0, 0, 0);
+        
+        // create an emitter, spew out the particles from it, then remove the emitter
+        em = part_emitter_create(global.weaponPS);
+        part_emitter_region(global.weaponPS, em, shotx, shotx2, shoty, shoty2, ps_shape_line, ps_distr_linear);
+        num = point_distance(shotx, shoty, shotx2, shoty2) / 4;
+        part_emitter_burst(global.weaponPS, em, trailPT, num);
+        part_emitter_destroy(global.weaponPS, em);
+        
+        // spawn the impact if the hitType is not a character, helmet, AND it hasn't fallen short
+        if ((hitType != Character) &amp;&amp; (hitType != Helmet) &amp;&amp; (hitType != -1)) {
+            var imp;
+            imp = instance_create(shotx2, shoty2, Impact);
+            imp.image_angle = direction;
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

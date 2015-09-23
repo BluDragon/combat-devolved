@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="BruteShotBaseS" type="RESOURCE"/>
+  <resource name="BruteShotBaseGrenadeS" type="RESOURCE"/>
+  <resource name="BruteShotFireS" type="RESOURCE"/>
+  <resource name="BruteShotBodyS" type="RESOURCE"/>
+  <resource name="BruteShotMeleeS" type="RESOURCE"/>
+  <resource name="BruteShotReloadS" type="RESOURCE"/>
+  <resource name="BruteShotReticleS" type="RESOURCE"/>
+  <resource name="BruteShotDropS" type="RESOURCE"/>
+</resources>

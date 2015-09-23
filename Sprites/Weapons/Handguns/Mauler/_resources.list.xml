@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="MaulerBaseS" type="RESOURCE"/>
+  <resource name="MaulerBaseGrenadeS" type="RESOURCE"/>
+  <resource name="MaulerBaseDWS" type="RESOURCE"/>
+  <resource name="MaulerFireS" type="RESOURCE"/>
+  <resource name="MaulerFireDWS" type="RESOURCE"/>
+  <resource name="MaulerBodyS" type="RESOURCE"/>
+  <resource name="MaulerMeleeS" type="RESOURCE"/>
+  <resource name="MaulerReloadS" type="RESOURCE"/>
+  <resource name="MaulerReticleS" type="RESOURCE"/>
+  <resource name="MaulerDropS" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var bolt, theta, mask, uCAP, rt;
+    
+    playsound(x, y, global.BruteShotSnd);
+    ammoCount = max(0, ammoCount - 1);
+    
+    // we just shot and can't shoot yet
+    justShot = true;
+    readyToShoot = false;
+    weaponRefireTime();
+    
+    // angle stuff
+    theta = image_angle;
+    uCAP = false;
+    if (image_xscale &lt; 0) theta -= 180;
+    
+    // call the macro to calculate the shot point
+    weaponShotPoint();
+    // then do the up-close and personal check
+    hitscanCollision(x, y, theta, point_distance(x, y, shotx, shoty));
+    // if a victim was found spawn the projectiles directly on their body
+    if (hitType == Character) {
+        shotx = hitID.x;
+        shoty = hitID.y;
+        uCAP = true;
+    } else if (hitType == Helmet) {
+        shotx = hitID.owner.x;
+        shoty = hitID.owner.y;
+        uCAP = true;
+    }
+    
+    // spawn a brute shot bomb
+    bolt = instance_create(shotx, shoty, BruteBomb);
+    bolt.direction = owner.aimDirection;
+    if (uCAP) {
+        bolt.speed = 0;
+        bolt.lifetime = 2;
+    } else {
+        bolt.speed = 16;
+        bolt.lifetime = ceil(maxRange / bolt.speed);
+    }
+    bolt.alarm[0] = bolt.lifetime;
+    bolt.owner = owner;
+    bolt.ownerPlayer = ownerPlayer;
+    bolt.team = owner.team;
+    bolt.weaponType = weaponType;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

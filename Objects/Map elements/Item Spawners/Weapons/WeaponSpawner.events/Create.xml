@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    spawnInterval = 900;    // the number of frames it takes for a new weapon to spawn once the old one is gone
+    weaponID = noone;       // the instance ID of the weapon
+        
+    // try to spawn a weapon soon
+    if (global.isHost) alarm[0] = 1;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

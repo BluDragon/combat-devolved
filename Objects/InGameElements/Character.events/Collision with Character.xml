@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="Character">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// if we're moving and not on the same team as the other player, perform the collision
+if (speed &gt; 0) &amp;&amp; (!onSameTeam(player, other.player)) {
+    // make them solid for the purpose of the collision event   
+    other.solid = true;
+    characterHitObstacle();
+    // then restore their solidity state
+    other.solid = false;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

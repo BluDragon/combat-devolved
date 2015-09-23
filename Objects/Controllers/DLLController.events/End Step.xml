@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // iterate through the list of sounds, updating those that have not finished playing
+    for (i = 0; i &lt; ds_list_size(autopanSoundsID); i += 1) {
+        if (FMODInstanceIsPlaying(ds_list_find_value(autopanSoundsID, i))) {
+            // update the sound
+            FMODInstanceSetVolume(ds_list_find_value(autopanSoundsID, i), calculateVolume(ds_list_find_value(autopanSoundsX, i), ds_list_find_value(autopanSoundsY, i)));
+            FMODInstanceSetPan(ds_list_find_value(autopanSoundsID, i), calculatePan(ds_list_find_value(autopanSoundsX, i)));
+        } else {
+            // remove it from the list
+            ds_list_delete(autopanSoundsID, i);
+            ds_list_delete(autopanSoundsX, i);
+            ds_list_delete(autopanSoundsY, i);
+            
+            // adjust the iterator position
+            i -= 1;
+        }
+    }
+    
+    // update FMOD
+    FMODUpdate();
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

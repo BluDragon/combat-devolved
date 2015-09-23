@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // NOTE: cursorX, cursorY, closestID, and closestDist cannot be temp variables,
+    // as the iterator needs to be able to address them across instances
+    
+    // determine where the owner's aiming
+    cursorX = owner.x + lengthdir_x(owner.aimDistance, owner.aimDirection);
+    cursorY = owner.y + lengthdir_y(owner.aimDistance, owner.aimDirection);
+    
+    lungeVictimID = -1;
+    closestDist = lungeSearchRadius;
+    
+    // iterate through all the characters, to find the enemy that's closest to the target
+    // and within a certain range of it
+    with (Character) {
+        var dist;
+        // continue with the check if its an enemy
+        if (!onSameTeam(other.ownerPlayer, player)) {
+            // get the distance of this enemy
+            dist = point_distance(other.cursorX, other.cursorY, x, y);
+            
+            if (other.lungeVictimID == -1) {
+                // if it's within range, set it as the closest
+                if (dist &lt;= other.lungeSearchRadius) {
+                    other.lungeVictimID = id;
+                    other.closestDist = dist;
+                }
+            } else {
+                // check if it's the closer one
+                if (dist &lt; other.closestDist) {
+                    other.lungeVictimID = id;
+                    other.closestDist = dist;
+                }
+            }
+        }
+    }
+    
+    // break if we found nothing
+    if (lungeVictimID &lt; 0) exit;
+    
+    // a victim was found, set the owner up to lunge at him
+    owner.meleeSearchTimer = 3;
+    meleeRangeOverride = true;
+    
+    // create the owner's melee strike mask
+    with (owner) {
+        global.paramOwner = id;
+        meleeStrikeMask = instance_create(0, 0, MeleeStrikeMask);
+        global.paramOwner = noone;
+        meleeStrikeMask.x = x;
+        meleeStrikeMask.y = y;
+        meleeStrikeMask.image_xscale = image_xscale;
+        meleeStrikeMask.alarm[0] = 10;
+    }
+    
+    // override the melee sprite to use the 'fire' sprite
+    //meleeSprite = EnergySwordFireS;
+    //meleeAnimLength = sprite_get_number(meleeSprite) / 16;
+    
+    // and perform the necessary weapon functions
+    playsound(x, y, global.EnergySwordSnd);
+    
+    justShot = true;
+    readyToShoot = false;
+    alarm[8] = 20;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

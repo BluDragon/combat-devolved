@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="Helmet">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (!stickied) {
+    if (!onSameTeam(ownerPlayer, other.ownerPlayer) || (ownerPlayer == other.ownerPlayer)) {
+        depth = -2; // draw under weapons, over helmets
+        
+        stickyID = other.id;
+        // Whoa forget precision.  The head is pretty tiny, so get stuck to a random spot on it
+        stickyX = random_range(-2, 7);
+        stickyY = random_range(-8, 2);
+        stickyType = Helmet;
+        
+        // common arming
+        event_user(0);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

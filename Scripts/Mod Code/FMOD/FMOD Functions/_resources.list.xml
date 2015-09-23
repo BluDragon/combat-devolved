@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="FMODinit" type="RESOURCE"/>
+  <resource name="FMODfree" type="RESOURCE"/>
+  <resource name="FMODUpdate" type="RESOURCE"/>
+  <resource name="FMODSoundAdd" type="RESOURCE"/>
+  <resource name="FMODSoundFree" type="RESOURCE"/>
+  <resource name="FMODSoundSetGroup" type="RESOURCE"/>
+  <resource name="FMODSoundSetMaxVolume" type="RESOURCE"/>
+  <resource name="FMODSoundPlay" type="RESOURCE"/>
+  <resource name="FMODSoundLoop" type="RESOURCE"/>
+  <resource name="FMODInstanceStop" type="RESOURCE"/>
+  <resource name="FMODInstanceSetPaused" type="RESOURCE"/>
+  <resource name="FMODInstanceSetVolume" type="RESOURCE"/>
+  <resource name="FMODInstanceSetPan" type="RESOURCE"/>
+  <resource name="FMODInstanceIsPlaying" type="RESOURCE"/>
+  <resource name="FMODAllStop" type="RESOURCE"/>
+  <resource name="FMODMasterSetVolume" type="RESOURCE"/>
+  <resource name="FMODInstanceSetLoopCount" type="RESOURCE"/>
+  <resource name="FMODInstanceGetSound" type="RESOURCE"/>
+  <resource name="FMODGetLastError" type="RESOURCE"/>
+  <resource name="FMODErrorStr" type="RESOURCE"/>
+</resources>

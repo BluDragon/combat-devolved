@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var g1, g2, s;
+    
+    g1 = make_color_rgb(51, 51, 51);
+    g2 = make_color_rgb(102, 102, 102);
+    
+    // draw the gradient
+    draw_rectangle_color(0, 0, 400, 300, g1, g1, g2, g2, false);
+    // draw the sprite based on function
+    if (global.sumochiSyncFunc == SUMOSYNC_LOAD) s = AchievementsLoadingS;
+    if (global.sumochiSyncFunc == SUMOSYNC_SAVE) s = AchievementsSavingS;
+    draw_sprite_ext(s, animStep / 7.5, 200, 150, 1, 1, 0, c_white, 1);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

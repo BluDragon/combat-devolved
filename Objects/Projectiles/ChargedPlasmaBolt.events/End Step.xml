@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // check if the target is no longer in the mask
+    if (!searching &amp;&amp; !targetInMask) {
+        searching = true;
+        target = noone;
+        nearestTarget = noone;
+        nearestDist = 0;
+    }
+    
+    // update the mask's position
+    mask.x = x;
+    mask.y = y;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

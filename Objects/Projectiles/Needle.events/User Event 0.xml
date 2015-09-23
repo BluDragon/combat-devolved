@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">needle ricochet</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if the needle is already stuck to something, we ignore new wall collisions
+    if (stickied) exit;
+    
+    // if the needle is picky about what it'll stick to
+    if (picky) {
+        // it's still picky, so ricochet and lose the pickiness
+        picky = false;
+        
+        // move the grenade to contact with the obstacle
+        move_contact_solid(direction, speed);
+                
+        // crude physics adapted from characterHitObstacle
+        if (vspeed != 0 &amp;&amp; !place_free(x, y + sign(vspeed))) {
+            // we hit a ceiling or floor
+            vspeed = -vspeed;
+        }
+
+        if (hspeed != 0 &amp;&amp; !place_free(x + sign(hspeed), y)) {
+            // we hit a wall
+            hspeed = -hspeed;
+        }
+        
+        // play the ricochet sound
+        playsound(x, y, global.NeedleRicochetSnd);
+        
+    } else {
+        // it's no longer picky, so get stuck to the wall
+        move_contact_solid(direction, speed);
+        stickied = true;
+        stickyID = -1;      // stuck to no-one
+        speed = 0;
+        // remove the mask
+        if (mask != -1) {
+            with (mask) instance_destroy();
+        }
+        mask = -1;
+        
+        // it'll pop harmlessly in a few seconds
+        alarm[0] = 60;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

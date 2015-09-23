@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">common sticking</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var sid;
+    
+    // stick and stop
+    stickied = true;
+    speed = 0;
+    
+    // if we weren't armed before we are now!
+    if (!armed) {
+        alarm[0] = fuseLength;
+        loopsoundstop(sizzleSID);
+        sizzleSID = -1;
+        
+        sid = playsound(x, y, armedSound);
+        // register the armed sound for autopan
+        registerAutopanSound(sid, x, y);
+    }
+    
+    armed = true;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

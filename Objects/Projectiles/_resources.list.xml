@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Old GG2" type="GROUP"/>
+  <resource name="Masks" type="GROUP"/>
+  <resource name="Grenades" type="GROUP"/>
+  <resource name="Impacts" type="GROUP"/>
+  <resource name="Explosions" type="GROUP"/>
+  <resource name="Pellet" type="RESOURCE"/>
+  <resource name="MaulerPellet" type="RESOURCE"/>
+  <resource name="FirebombGlob" type="RESOURCE"/>
+  <resource name="PlasmaPistolBolt" type="RESOURCE"/>
+  <resource name="PlasmaRifleBolt" type="RESOURCE"/>
+  <resource name="ChargedPlasmaBolt" type="RESOURCE"/>
+  <resource name="Needle" type="RESOURCE"/>
+  <resource name="SpikerBolt" type="RESOURCE"/>
+  <resource name="FuelRodCannonBlast" type="RESOURCE"/>
+  <resource name="Rocket" type="RESOURCE"/>
+  <resource name="BruteBomb" type="RESOURCE"/>
+  <resource name="SpikeGrenadeBolt" type="RESOURCE"/>
+</resources>

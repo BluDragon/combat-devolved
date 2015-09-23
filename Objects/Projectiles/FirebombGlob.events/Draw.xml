@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    if (napalmDraw) {
+        var xr, yr;
+        
+        // change blending mode
+        draw_set_blend_mode(bm_add);
+        // draw the goo
+        xr = round(x + lengthdir_x(6, napalmAngle));
+        yr = round(y + lengthdir_y(6, napalmAngle));
+        draw_sprite_ext(NapalmGooS, 0, xr, yr, 0.4, 0.125, napalmAngle - 90, c_white, 1);
+        // reset blending mode
+        draw_set_blend_mode(bm_normal);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

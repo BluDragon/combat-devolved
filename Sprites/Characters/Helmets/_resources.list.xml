@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="HelmetsColor" type="RESOURCE"/>
+  <resource name="HelmetsOutline" type="RESOURCE"/>
+  <resource name="HelmetsShields" type="RESOURCE"/>
+</resources>

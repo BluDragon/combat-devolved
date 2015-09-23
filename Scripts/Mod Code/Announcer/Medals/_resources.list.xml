@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="medalScoreKill" type="RESOURCE"/>
+  <resource name="recordMedal" type="RESOURCE"/>
+  <resource name="medalStep" type="RESOURCE"/>
+  <resource name="drawMedalLog" type="RESOURCE"/>
+</resources>

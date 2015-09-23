@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    xoffset = -12;
+    yoffset = -8;
+    xbarrel = 29;
+    ybarrel = 4;
+    refireTime = 2;     // a single shot maxes out the heat, so refire time is low
+    event_inherited();
+    
+    weaponType = WEAPON_SPARTANLASER;
+    
+    // ammo counters (maximum, magazines, etc)
+    maxAmmo = global.weaponMaxAmmo[weaponType];  // how much ammo you can have loaded in
+    maxReserve = global.weaponMaxReserve[weaponType];   // how much ammo you can have in reserve
+    ammoCount = maxAmmo;  // how much ammo you currently have loaded in
+    reserveAmmo = 0;    // how much ammo you currently have in reserve
+    
+    // range in pixels
+    maxRange = 600;
+    
+    // damage
+    damage = 284;
+    shieldDamage = damage;
+    
+    // reload stuff
+    reloadTime = 30;    // the spartan should never have a reload chance, as it has 0 reserve ammo
+    
+    // sprites for the various states and layers
+    normalSprite = SpartanLaserBaseS;
+    grenadeSprite = SpartanLaserBaseGrenadeS;
+    recoilSprite = SpartanLaserFireS;
+    reloadSprite = -1;
+    bodySprite = SpartanLaserBodyS;
+    meleeSprite = SpartanLaserMeleeS;
+    equipOnBack = true;
+    
+    // reticle
+    reticleSprite = SpartanLaserReticleS;
+    
+    // sound stuff
+    equipSound = global.SpartanLaserEquipSnd;
+    chargingSound = global.SpartanLaserChargingSnd;
+    
+    // charging
+    chargesUp = true;
+    autoFireOnFullCharge = true;
+    onlyFireOnFullCharge = true;
+    maxCharge = 80;     // charges over ~2.6 seconds for proper sound sync
+    
+    // recoil stuff
+    // since we now play recoil anims at 1:1 frame-wise, we don't need to calculate speed,
+    // just need to know how many frames there are
+    recoilAnimLength = sprite_get_number(recoilSprite) / 16;
+    reloadAnimLength = sprite_get_number(reloadSprite) / 16;
+    meleeAnimLength = sprite_get_number(meleeSprite) / 16;
+    
+    // heat stuff
+    overheats = true;
+    maxHeat = 75;
+    
+    // whether or not to draw the hitscan line this frame
+    drawShot = false;
+    
+    // Spartan Laser trail particle types
+    corePT = part_type_create();
+    part_type_shape(corePT, pt_shape_line);
+    part_type_color1(corePT, make_color_rgb(255, 210, 210));
+    part_type_alpha2(corePT, 1, 0);
+    part_type_life(corePT, 8, 8);
+    part_type_blend(corePT, true);
+    
+    trailPT = part_type_create();
+    part_type_shape(trailPT, pt_shape_line);
+    part_type_color1(trailPT, make_color_rgb(255, 0, 0));
+    part_type_alpha2(trailPT, 1, 0);
+    part_type_life(trailPT, 10, 10);
+    part_type_blend(trailPT, true);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

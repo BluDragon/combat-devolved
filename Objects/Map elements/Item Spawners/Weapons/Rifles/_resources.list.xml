@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="AssaultRifleSpawner" type="RESOURCE"/>
+  <resource name="BattleRifleSpawner" type="RESOURCE"/>
+  <resource name="BeamRifleSpawner" type="RESOURCE"/>
+  <resource name="CarbineSpawner" type="RESOURCE"/>
+  <resource name="ShotgunSpawner" type="RESOURCE"/>
+  <resource name="SniperRifleSpawner" type="RESOURCE"/>
+</resources>

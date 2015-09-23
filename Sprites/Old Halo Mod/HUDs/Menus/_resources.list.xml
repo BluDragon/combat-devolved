@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="BubbleMenuZS" type="RESOURCE"/>
+  <resource name="BubbleMenuCS" type="RESOURCE"/>
+  <resource name="AdminMenuS" type="RESOURCE"/>
+  <resource name="MapChangeMenuS" type="RESOURCE"/>
+  <resource name="PlayerKillMenuS" type="RESOURCE"/>
+  <resource name="CapLimitMenuS" type="RESOURCE"/>
+</resources>

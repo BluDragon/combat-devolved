@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="HealingCabinet">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// Do nothing -- this will be removed
+/*
+var i, playSnd;
+
+if (!global.mapchanging) {
+    if (hp &lt; maxHp)
+    {
+        playsound(x,y,global.CbntHealSnd);
+        hp = maxHp;
+    }
+    // reset Stop Drop Go
+    if (player == global.myself) AchievementController.stopDropGoOkay = false;
+    
+    //ammo stuffs
+    playSnd = false;
+    for (i = 0; i &lt; 2; i += 1) {
+        if ((weapons[i].ammoCount &lt; weapons[i].maxAmmo) || (weapons[i].reserveAmmo &lt; weapons[i].maxReserve)) {
+            weapons[i].ammoCount = weapons[i].maxAmmo;
+            weapons[i].reserveAmmo = weapons[i].maxReserve;
+            playsound(x, y, weapons[i].ammoPickupSound);
+        }
+    }
+    // stock grenades
+    for (i = 0; i &lt; 2; i += 1) {
+        if (grenadeAmmo[i] &lt; 2) {
+            grenadeAmmo[i] = 2;
+            playSnd = true;
+        }
+    }
+    grenadeAmmo[3] = 2;
+    
+    if (playSnd) playsound(x, y, global.PickupSnd);
+}
+*/
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

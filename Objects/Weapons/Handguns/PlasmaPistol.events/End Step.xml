@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// Plasma Pistol particle effects
+{
+    var px, py, pos, tick, i, theta;
+    
+    // if the owner is cloaked, don't spawn any particles
+    if (owner.cloakAlpha &lt; 0.5) exit;
+    
+    pos = getWeaponPosition(id);
+    
+    // if the plasma pistol is in cooldown and not sheathed
+    if (alarm[10] &gt; -1) &amp;&amp; (pos != 0) {
+        // figure out which frame is being drawn
+        if (maxHeat - alarm[10] &lt; 9) {
+            tick = floor((maxHeat - alarm[10]) / 3);
+        } else if (maxHeat - alarm[10] &lt; maxHeat - 9) {
+            tick = 2;
+        } else {
+            tick = 3 + floor((9 - alarm[10]) / 3);
+        }
+        // depending on which tick it is, the particles are in different places
+        if (tick == 0) {
+            px = 15 * image_xscale;
+            py = -6;
+        } else if (tick &lt; 3) {
+            px = 11 * image_xscale;
+            py = -12;
+        } else {
+            // don't spawn anything
+            exit;
+        }
+        // figure out where the spawn point for the smoke particles would be
+        switch (pos) {
+            case 1:
+                px += x + xoffset * image_xscale;
+                py += y + yoffset;
+                break;
+                
+            case 2:
+                px += x + (xoffset + xoffsetDW) * image_xscale;
+                py += y + yoffset + yoffsetDW;
+                break;
+        }
+
+        // move the emitter and spawn smoke based on remaining heat
+        part_emitter_region(global.weaponPS, smokeEM, px - 1, px + 1, py - 1, py + 1, ps_shape_ellipse, ps_distr_gaussian);
+        part_emitter_burst(global.weaponPS, smokeEM, global.plasmaPistolSmokePT, heat / 15);
+    }
+    
+    // if the plasma pistol has some charge or it was just shot
+    if (chargeLevel &gt; 0) || justShot {
+        // figure out where to spawn the particles from
+        theta = degtorad(image_angle);
+        var xb;
+        xb = xbarrel + 3;
+        // Trigonometry &amp; Transformation Matrices are quite useful!
+        if (pos == 1) {
+            // original formula
+            px = x + xoffset * image_xscale + (cos(theta) * xb * image_xscale + sin(theta) * ybarrel);
+            py = y + yoffset - (sin(theta) * xb * image_xscale - cos(theta) * ybarrel);
+        } else {
+            // left-hand gun formula
+            px = x + (xoffset + xoffsetDW) * image_xscale + (cos(theta) * xb * image_xscale + sin(theta) * ybarrel);
+            py = y + (yoffset + yoffsetDW) - (sin(theta) * xb * image_xscale - cos(theta) * ybarrel);
+        }
+        
+        // spawn particles based on whether it was shot or charging
+        if (!justShot) {
+            // create particles based on charge level
+            part_particles_create(global.weaponPS, px, py, global.plasmaPistolChargeRingPT, ceil(chargeLevel / 3));
+            part_particles_create(global.weaponPS, px, py, global.plasmaPistolChargeGlowPT, ceil(chargeLevel / 6));
+            part_particles_create(global.weaponPS, px, py, global.plasmaPistolChargeLinePT, ceil(chargeLevel / 3));
+        } else {
+            // spawn a bunch for the shot
+            part_particles_create(global.weaponPS, px, py, global.plasmaPistolChargeRingPT, 10);
+            part_particles_create(global.weaponPS, px, py, global.plasmaPistolChargeGlowPT, 3);
+            part_particles_create(global.weaponPS, px, py, global.plasmaPistolChargeLinePT, 4);
+        }
+    }
+    
+}
+</argument>
+      </arguments>
+    </action>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+  </actions>
+</event>

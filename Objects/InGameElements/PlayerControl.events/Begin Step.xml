@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="1">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if(instance_exists(InGameMenuController) || instance_exists(OptionsController) || instance_exists(ControlsController) || (instance_exists(ChatBox) &amp;&amp; global.chatControl))
+    exit;
+    
+var kickOpen;
+kickOpen = false
+if instance_exists(ScoreTableController)
+    if ScoreTableController.showadmin
+        kickOpen = true;
+    
+if(instance_exists(TeamSelectController) || kickOpen)
+    menuOpen = true;
+else
+    menuOpen = false;
+
+//Checking for input - Mapped Keys
+if(keyboard_check_pressed(global.keyChangeTeam)) inputChangeTeam();
+
+var scoreKeyDown;
+scoreKeyDown = keyboard_check_direct(global.keyShowScores);
+if(scoreKeyDown and !oldScoreKeyDown)
+    inputShowScores();
+else if(!scoreKeyDown and oldScoreKeyDown)
+    inputCloseScores();
+oldScoreKeyDown = scoreKeyDown;
+    
+var keyword;
+keyword = 0;
+    
+//character object exists
+if (global.myself.object != -1) {
+    if (!menuOpen) {
+        if (keyboard_check(global.keyLeft)) keyword |= $0040;
+        if (keyboard_check(global.keyRight)) keyword |= $0020;
+        if (keyboard_check(global.keyJump)) keyword |= $0080;
+        if (keyboard_check(global.keyDown)) keyword |= $0004;
+        if (keyboard_check(global.keyUp)) keyword |= $0100;
+        if (keyboard_check_pressed(global.keyChat1)) inputChat1();
+        if (keyboard_check_pressed(global.keyChat2)) inputChat2();
+        if (keyboard_check(global.keyPickup)) keyword |= $0200;
+        if (keyboard_check(global.keyReload)) keyword |= $0400;
+        if (keyboard_check(global.keySwapGun)) keyword |= $0800;
+        if (keyboard_check(global.keySwapGrenade)) keyword |= $1000;
+        if (keyboard_check(global.keyMelee)) keyword |= $2000;
+        
+        if (keyboard_check(global.keyAttack)) keyword |= $0010;
+        if (keyboard_check(global.keyGrenade)) keyword |= $0008;
+        //if (keyboard_check_pressed(global.keyGrenade)) inputGrenade();
+
+        // check for things mapped to LMB
+        if (mouse_check_button(mb_left)) {
+            if (global.keyAttack == MOUSE_LEFT) keyword |= $0010;
+            if (global.keyGrenade == MOUSE_LEFT) keyword |= $0008;
+        }
+        //if (mouse_check_button_pressed(mb_left) and global.keyGrenade == MOUSE_LEFT) inputGrenade();
+
+        // check for things mapped to RMB
+        if (mouse_check_button(mb_right)) {
+            if(global.keyAttack == MOUSE_RIGHT) keyword |= $0010;
+            if(global.keyGrenade == MOUSE_RIGHT) keyword |= $0008;
+        }
+        //if (mouse_check_button_pressed(mb_right) and global.keyGrenade == MOUSE_RIGHT) inputGrenade();
+    }
+    
+    ClientInputstate(global.serverSocket, keyword);
+    socket_send(global.serverSocket);
+    
+// spectator controls
+} else if (instance_exists(Spectator)) {
+    /*
+    if(!menuOpen)
+    {
+        if(mouse_check_button_pressed(mb_left))
+            with (Spectator) event_user(7);
+        if(mouse_check_button_pressed(mb_right))
+            with (Spectator) event_user(8);
+    }
+    */
+}
+
+if (keyword != 0
+        or keyboard_check(global.keyLeft)
+        or keyboard_check(global.keyRight)
+        or keyboard_check(global.keyJump)
+        or keyboard_check(global.keyDown)) {
+    afktimer = afktimeout;
+}
+
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

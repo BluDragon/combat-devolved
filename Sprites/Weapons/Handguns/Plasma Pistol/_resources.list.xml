@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="PlasmaPistolBaseS" type="RESOURCE"/>
+  <resource name="PlasmaPistolBaseGrenadeS" type="RESOURCE"/>
+  <resource name="PlasmaPistolBaseDWS" type="RESOURCE"/>
+  <resource name="PlasmaPistolFireS" type="RESOURCE"/>
+  <resource name="PlasmaPistolFireDWS" type="RESOURCE"/>
+  <resource name="PlasmaPistolBodyS" type="RESOURCE"/>
+  <resource name="PlasmaPistolMeleeS" type="RESOURCE"/>
+  <resource name="PlasmaPistolReticleS" type="RESOURCE"/>
+  <resource name="PlasmaPistolDropS" type="RESOURCE"/>
+  <resource name="PlasmaPistolCooldownS" type="RESOURCE"/>
+  <resource name="PlasmaPistolCooldownDWS" type="RESOURCE"/>
+</resources>

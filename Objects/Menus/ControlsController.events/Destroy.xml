@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DESTROY" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">ini_open("controls.h2d");
+ini_write_real("Controls", "jump", global.keyJump);
+ini_write_real("Controls", "up", global.keyUp);
+ini_write_real("Controls", "down", global.keyDown);
+ini_write_real("Controls", "left", global.keyLeft);
+ini_write_real("Controls", "right", global.keyRight);
+ini_write_real("Controls", "attack", global.keyAttack);
+ini_write_real("Controls", "grenade", global.keyGrenade);
+ini_write_real("Controls", "pickup", global.keyPickup);
+ini_write_real("Controls", "reload", global.keyReload);
+ini_write_real("Controls", "swapGun", global.keySwapGun);
+ini_write_real("Controls", "swapGrenade", global.keySwapGrenade);
+ini_write_real("Controls", "melee", global.keyMelee);
+ini_write_real("Controls", "chat1", global.keyChat1);
+ini_write_real("Controls", "chat2", global.keyChat2);
+ini_write_real("Controls", "changeTeam", global.keyChangeTeam);
+ini_write_real("Controls", "showScores", global.keyShowScores);
+ini_close();
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

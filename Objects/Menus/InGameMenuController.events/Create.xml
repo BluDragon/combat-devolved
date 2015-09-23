@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // reset the cursor sprite
+    Cursor.sprite_index = CrosshairS;
+    
+    // if the player character is zoomed, unzoom
+    if (global.myself != -1) {
+        if (global.myself.object != -1) {
+            with (global.myself.object) {
+                // clear the zoomed status
+                if (zoomed) {
+                    zoomed = false;
+                    undoZoomCursor();
+                }
+            }
+        }
+    }
+    
+    global.levelchoice = 1
+
+    menu_create(40, 300, 200, 200, 30);
+    menu_setdimmed();
+    
+    menu_addlink("Options", '
+        instance_destroy();
+        instance_create(0,0,OptionsController);
+    ');
+    menu_addback("Return to Game", '
+        instance_destroy();
+    ');
+    if (global.isHost) {
+        menu_addlink("Kick players", '
+            if(!instance_exists(ScoreTableController)) instance_create(0,0,ScoreTableController);
+            ScoreTableController.showadmin = true;
+            instance_destroy();
+        ');
+    }
+    menu_addlink("", '');
+    menu_addlink("Disconnect", '
+        // Force dedicated mode to off so you can go to main menu instead of just restarting server
+        global.dedicatedMode = 0;
+        with(Client)
+            instance_destroy();
+            
+        with(GameServer)
+            instance_destroy();
+    ');
+    menu_addlink("Quit Game", '
+        /*
+        // destroy the client and game server, if they exist, but this time do the sumochi sync
+        // save and quit
+        global.sumochiSyncFunc = SUMOSYNC_SAVE;
+        global.sumochiSyncReturn = -1;
+        with (Client) {
+            returnRoom = SumochiSyncRoom;
+            instance_destroy();
+        }
+        
+        with (GameServer) {
+            returnRoom = SumochiSyncRoom;
+            instance_destroy();
+        }
+        */
+        game_end();
+    ');
+    
+    // disable the chat window's control-grabbing if it's open
+    if (instance_exists(ChatBox)) {
+        global.chatControl = false;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="fnt_gg2" type="RESOURCE"/>
+  <resource name="fnt_console" type="RESOURCE"/>
+  <resource name="fnt_cheevo" type="RESOURCE"/>
+  <resource name="fnt_chat" type="RESOURCE"/>
+</resources>

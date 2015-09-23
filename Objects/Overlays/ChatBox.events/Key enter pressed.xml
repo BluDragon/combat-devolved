@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="KEYPRESS" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var chatMsg;
+    
+    // exit if we're not currently typing
+    if (instance_exists(InGameMenuController) || instance_exists(OptionsController) || instance_exists(ControlsController) || instance_exists(TeamSelectController)) exit;
+    if (!global.chatControl) exit;
+    
+    // if the chat window is empty cancel the chat entry
+    if (string_length(keyboard_string) == 0) {
+        global.chatControl = false;
+        tAlpha = 0.5;
+        exit;
+    }
+    
+    // otherwise, we're good, make sure the keyboard string is clipped, then
+    // submit the message
+    if (string_length(keyboard_string) &gt; MAX_CHAT_SIZE) keyboard_string = string_copy(keyboard_string, 0, MAX_CHAT_SIZE);
+    // also strip out invalid characters
+    keyboard_string = string_replace_all(keyboard_string, "#", "");
+    chatMsg = keyboard_string;
+    
+    global.chatControl = false;
+    tAlpha = 0.5;
+    
+    // finally, make the submission
+    write_ubyte(global.serverSocket, CHAT_MESSAGE);
+    write_ubyte(global.serverSocket, string_length(chatMsg) + 1);
+    write_ubyte(global.serverSocket, chatScope);
+    write_string(global.serverSocket, chatMsg);
+    socket_send(global.serverSocket);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

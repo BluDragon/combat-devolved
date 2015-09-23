@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // check to see if we've been stuck to a victim
+    if (stickied) {
+        // check if he's still alive
+        if (stickyID != -1) {
+            if (instance_exists(stickyID)) {
+                // update position to match where we should be on the victim
+                
+            } else {
+                // the victim was killed
+                stickyID = -1;
+            }
+        }
+    }
+    
+    // update the loop sound so long as the grenade isn't armed
+    if (!armed) {
+        loopsoundmaintain(x, y, sizzleSID);
+    }
+    
+    // we're only affected by gravity if we've never been stuck
+    // OR the victim was killed before detonation
+    if (stickyID == -1) {
+        // gravity
+        vspeed += 0.3;  // plasmas fall slower
+        vspeed = min(vspeed, 12);
+        
+        // increment airtime
+        airtime += 1;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="achievementMenuControllerDraw" type="RESOURCE"/>
+  <resource name="achievementMenuControllerStep" type="RESOURCE"/>
+  <resource name="menu_addedit_pass" type="RESOURCE"/>
+</resources>

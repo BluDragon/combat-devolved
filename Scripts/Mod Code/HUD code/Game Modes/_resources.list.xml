@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="drawCTFHud" type="RESOURCE"/>
+  <resource name="drawKothHud" type="RESOURCE"/>
+  <resource name="drawArenaHud" type="RESOURCE"/>
+  <resource name="drawCPHud" type="RESOURCE"/>
+  <resource name="drawGenHud" type="RESOURCE"/>
+  <resource name="drawDKothHud" type="RESOURCE"/>
+</resources>

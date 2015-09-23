@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // spawn the particles of the trail
+    var xScale, angle, part, em;
+    
+    xScale = point_distance(xprevious, yprevious, x, y) / 8;
+    angle = point_direction(xprevious, yprevious, x, y);
+    
+    part = part_type_create();
+    registerTempParticle(part, 9, 9);
+    part_type_sprite(part, SmokeBallS, true, false, true);
+    //part_type_shape(part, pt_shape_disk);
+    part_type_color2(part, make_color_rgb(17, 238, 128), make_color_rgb(21, 234, 186));
+    part_type_alpha3(part, 1, 0.8, 0);
+    part_type_orientation(part, angle, angle, 0, 0, 0);
+    part_type_scale(part, xScale, 0.5);
+    part_type_size(part, 1, 1, -0.07, 0);
+    part_type_blend(part, true);
+    
+    part_particles_create(global.weaponPS, x + (xprevious - x) / 2, y + (yprevious - y) / 2, part, 1);
+    
+    // create the line emitter
+    em = part_emitter_create(global.weaponPS);
+    part_emitter_region(global.weaponPS, em, xprevious, x, yprevious, y, ps_shape_line, ps_distr_linear);
+    // burst the corona
+    part_emitter_burst(global.weaponPS, em, global.fuelRodCannonCoronaPT, 5);
+    // burst the 'sparks'
+    part_emitter_burst(global.weaponPS, em, global.fuelRodCannonPixelPT, 2);
+    // destroy the emitter
+    part_emitter_destroy(global.weaponPS, em);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

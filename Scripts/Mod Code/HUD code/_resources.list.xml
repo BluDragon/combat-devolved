@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Game Modes" type="GROUP"/>
+  <resource name="Visor" type="GROUP"/>
+  <resource name="drawTeamBar" type="RESOURCE"/>
+  <resource name="drawCapBar" type="RESOURCE"/>
+  <resource name="drawKillLog" type="RESOURCE"/>
+  <resource name="drawFlagPointer" type="RESOURCE"/>
+  <resource name="noticeBarRedirect" type="RESOURCE"/>
+  <resource name="balancerRedirect" type="RESOURCE"/>
+  <resource name="drawCursor" type="RESOURCE"/>
+</resources>

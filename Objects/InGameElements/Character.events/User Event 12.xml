@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="22">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var temp, i;
+    write_ushort(global.serializeBuffer, keyState);
+    write_ushort(global.serializeBuffer, netAimDirection);
+    write_ushort(global.serializeBuffer, netAimDistance);
+
+    if(global.updateType == QUICK_UPDATE or global.updateType == FULL_UPDATE) {
+        write_ushort(global.serializeBuffer, x * 5);
+        write_ushort(global.serializeBuffer, y * 5);
+        // NOTE: increased 'maximum' speeds for lunging
+        write_short(global.serializeBuffer, hspeed * 8.5);
+        write_short(global.serializeBuffer, vspeed * 8.5);
+        // NOTE: increased resolution of HP and shields from 1.0 to 0.01
+        write_ushort(global.serializeBuffer, ceil(hp) * 100);
+        write_ushort(global.serializeBuffer, ceil(shieldHp) * 100);
+        
+        // write the current state
+        write_ubyte(global.serializeBuffer, state);
+        // write the currently equipped weapon index for sync
+        write_ubyte(global.serializeBuffer, currentWeapon);
+        // write the currently selected grenade index for sync
+        write_ubyte(global.serializeBuffer, currentGrenade);
+        
+        // write various flags
+        temp = 0;
+        if (cloak) temp |= $01;
+        if (intel) temp |= $02;
+        if (crouched) temp |= $04;
+        if (firebombBurning) temp |= $08;   // firebomb burning is now synced
+        //allocate the next three bits of the byte for movestatus sync
+        temp |= (moveStatus &amp; $07) &lt;&lt; 4;
+        write_ubyte(global.serializeBuffer, temp);
+    }
+   
+
+    if (global.updateType == FULL_UPDATE){
+        // write the time unscathed, capping it at 60,000
+        write_ushort(global.serializeBuffer, min(timeUnscathed, 60000));
+        
+        // GG2: intel grabability timer, might remove this for H2D
+        write_short(global.serializeBuffer, alarm[1]);
+        
+        // grenade cooldown timer
+        write_byte(global.serializeBuffer, grenadeCooldownTimer);
+        
+        // write the grenade ammo levels
+        temp = 0;
+        for (i = 0; i &lt; 4; i += 1) {
+            temp = temp | (grenadeAmmo[i] &lt;&lt; (i * 2));
+        }
+        write_ubyte(global.serializeBuffer, temp);
+        
+        // write the two weapon types, so if there's a mismatch on the client end, that can be fixed
+        // before the user events are called
+        write_byte(global.serializeBuffer, weapons[0].weaponType);
+        write_byte(global.serializeBuffer, weapons[1].weaponType);
+        // if in a state with an aux weapon, write the weapon type
+        switch (state) {
+            case CHAR_STATE_DUALWIELD:
+            case CHAR_STATE_HEAVYGUN:
+            case CHAR_STATE_HEAVYTURRET:
+                write_byte(global.serializeBuffer, weapons[2].weaponType);
+                break;
+        }
+        
+        // call the event on both weapons
+        with (weapons[0]) {
+            event_user(12);
+        }
+        with (weapons[1]) {
+            event_user(12);
+        }
+        // if in a state with an aux weapon, call the event on the 3rd weapon
+        switch (state) {
+            case CHAR_STATE_DUALWIELD:
+            case CHAR_STATE_HEAVYGUN:
+            case CHAR_STATE_HEAVYTURRET:
+                with (weapons[2]) {
+                    event_user(12);
+                }
+                break;
+        }
+    }
+}
+
+
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

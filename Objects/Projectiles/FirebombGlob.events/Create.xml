@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    falling = true;     // whether the glob is still in freefall
+    stickied = false;   // whether the glob has stuck to something
+    pRad = 7;           // the radius of the particle effect emitter
+    stickyID = -1;      // who the glob has stuck to
+    stickyX = 0;        // where the glob got stuck on the victim
+    stickyY = 0;
+    
+    napalmDraw = false; // if the napalm glob should be drawn
+    napalmAngle = 270;    // the direction the glob should face when drawn (defaults to down)
+    
+    // persist for 5 seconds
+    alarm[0] = 150;
+    
+    // create the emitter
+    emitter = part_emitter_create(global.weaponPS);
+    part_emitter_region(global.weaponPS, emitter, x - pRad, x + pRad, y - pRad, y + pRad, ps_shape_ellipse, ps_distr_gaussian);
+    part_emitter_stream(global.weaponPS, emitter, global.firebombGFlamePT, 2);  // set the density
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

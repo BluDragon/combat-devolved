@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    ammoCount = max(0, ammoCount - 1);
+    playsound(x, y, global.CarbineSnd);
+    
+    justShot = true;
+    readyToShoot = false;
+    weaponRefireTime();
+    
+    // HITSCAN ALSO, YAY
+    // draw the line this frame
+    drawShot = true;
+    
+    // angle stuff
+    var theta;
+    
+    theta = image_angle;    // use the current angle of the weapon rather than the char's aimDirection
+    if (image_xscale &lt; 0) theta -= 180;
+    theta += (random(1.5) - 0.75) * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldSpreadFactor, 1);
+    
+    // common hitscan detection
+    // call the macro to calculate the shot point
+    weaponShotPoint();
+    // then do the up-close and personal check
+    hitscanCollision(x, y, theta, point_distance(x, y, shotx, shoty));
+    if (hitType == -1) {
+        // nobody was found up close, do the normal shot check
+        hitscanCollision(shotx, shoty, theta, maxRange);
+    } else {
+        // someone was found up close, don't draw the shot
+        drawShot = false;
+    }
+    
+    // common damage
+    weaponDealDamage(hitID,
+        shieldDamage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1),
+        damage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1),
+        damageBleeds, headshotShield, headshotKill, ownerPlayer, weaponType);
+    
+    // particle system -- adjust this weapon's particle orientation and scale
+    var theta;
+    theta = point_direction(shotx, shoty, shotx2, shoty2);
+    part_type_orientation(trailPT, theta, theta, 0, 0, 0);
+    part_type_scale(trailPT, point_distance(shotx, shoty, shotx2, shoty2) / 54, 0.2);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

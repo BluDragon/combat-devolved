@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="ALARM" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var ammoAmt;
+    // spawn with 2 reserve mags
+    //ammoAmt = global.weaponMaxAmmo[weaponType] + min(global.weaponMaxAmmo[weaponType] * 2, global.weaponMaxReserve[weaponType]);    
+    
+    // spawn with the appropriate amount of ammo
+    switch (weaponType) {
+        case WEAPON_FRAGGRENADE:
+        case WEAPON_PLASMAGRENADE:
+        case WEAPON_FIREBOMB:
+        case WEAPON_SPIKEGRENADE:
+            // grenades spawn with 1
+            ammoAmt = 1;
+            break;
+        
+        default:
+            // spawn with full ammo
+            ammoAmt = global.weaponMaxAmmo[weaponType] + global.weaponMaxReserve[weaponType];
+            break;
+    }
+    
+    sendEventWeaponSpawn(weaponType, ammoAmt, -1, x, y, 0, 0);
+    weaponID = doEventWeaponSpawn(weaponType, ammoAmt, -1, x, y, 0, 0);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

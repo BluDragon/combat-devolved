@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Menu" type="GROUP"/>
+  <resource name="Achievement Icons" type="GROUP"/>
+  <resource name="AchievementUnlockedS" type="RESOURCE"/>
+  <resource name="AchievementsLoadingS" type="RESOURCE"/>
+  <resource name="AchievementsSavingS" type="RESOURCE"/>
+</resources>

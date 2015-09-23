@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var theta, sid;
+    
+    justShot = true;
+    readyToShoot = false;
+    weaponRefireTime();
+
+    // 'draw' the line this frame
+    drawShot = true;
+    
+    theta = image_angle;
+    if (image_xscale &lt; 0) theta -= 180;
+    
+    // common hitscan detection
+    // call the macro to calculate the shot point
+    weaponShotPoint();
+    // then do the up-close and personal check
+    hitscanCollision(x, y, theta, point_distance(x, y, shotx, shoty));
+    if (hitType == -1) {
+        // nobody was found up close, do the normal shot check
+        hitscanCollision(shotx, shoty, theta, maxRange);
+    } else {
+        // someone was found up close, don't draw the shot
+        drawShot = false;
+    }
+    
+    // heat up
+    heat = min(heat + 55, maxHeat);   
+    // deduct ammo and play sound based on heat level
+    if (heat &gt;= 60) {
+        // deduction ranges from 40 to 100 based on heat level
+        ammoCount = max(0, ammoCount - (40 + (heat - 60) / (maxHeat - 60) * 60));
+    } else {
+        // deduction is fixed at 40
+        ammoCount = max(0, ammoCount - 40);
+    }
+    if (heat &gt;= maxHeat) {
+        // overheated sound, now overheated
+        sid = playsound(x, y, global.BeamRifleCooldownSnd);
+        registerAutopanSound(sid, x, y);
+        overheated = true;
+        alarm[10] = maxHeat;    // animate the cooldown
+        // if this is the player...
+        if (ownerPlayer == global.myself) {
+            // do the ammo warning cooldown flash for as long as it needs to cool down
+            ammoWarningCheck(id, owner.weapons[2] == id, true, heat, true);
+            // if we were zoomed in, force an unzoom
+            if (owner.zoomed) {
+                owner.zoomed = false;
+                undoZoomCursor();
+            }
+        }
+    } else {
+        // normal sound
+        sid = playsound(x, y, global.BeamRifleSnd);
+        registerAutopanSound(sid, x, y);
+    }
+    
+    // common damage
+    weaponDealDamage(hitID,
+        shieldDamage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1),
+        damage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1),
+        damageBleeds, headshotShield, headshotKill, ownerPlayer, weaponType);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

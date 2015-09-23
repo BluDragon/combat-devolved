@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="WeaponDrop">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // ignore all weapon drops that still have vertical momentum
+    if (other.vspeed != 0) exit;
+    
+    // special-case grenade check comes first
+    if ((other.weaponType &gt;= WEAPON_FRAGGRENADE) &amp;&amp; (other.weaponType &lt;= WEAPON_FIREBOMB)) {
+        // it's a grenade powerup, if we're the host, see if it can be picked up
+        if (global.isHost) {
+            if (grenadeAmmo[other.weaponType - WEAPON_FRAGGRENADE] &lt; 2) {
+                var ammoAmt;
+                ammoAmt = min(2 - grenadeAmmo[other.weaponType - WEAPON_FRAGGRENADE], other.ammo);
+                
+                // ammo can be replenished, do and send a weapon ammo pickup event
+                sendEventWeaponPickupAmmo(player, 0, other.id, ammoAmt);
+                doEventWeaponPickupAmmo(player, 0, other.id, ammoAmt);
+            }
+        }
+        // no more processing this instance, as the special case ends
+        exit;
+    }
+    
+    // then check to see if the weapon type matches that of any of the player's weapons
+    var i;
+    for (i = 0; i &lt; 3; i += 1) {
+        // if the weapon types match
+        if (instance_exists(weapons[i])) {
+            if (weapons[i].weaponType == other.weaponType) {
+                // weapon types match
+                // if we're the host see if ammo can be replenished
+                if (global.isHost) {
+                    // figure out how much ammo might be replenished
+                    var ammoAmt;                    
+                    // if the max reserve is 0, we can always only replenish 0
+                    ammoAmt = Iif(weapons[i].maxReserve, min((weapons[i].maxReserve - weapons[i].reserveAmmo) + (weapons[i].maxAmmo - weapons[i].ammoCount), other.ammo), 0);
+                    
+                    // if we can replenish some ammo
+                    if (ammoAmt &gt; 0) {
+                        // do and send a weapon ammo pickup event
+                        sendEventWeaponPickupAmmo(player, i, other.id, ammoAmt);
+                        doEventWeaponPickupAmmo(player, i, other.id, ammoAmt);
+                        
+                        // no more processing for this instance
+                        exit;
+                    }
+                }
+            }
+        }
+    }
+    
+    // the primary weapon can be swapped for anything that doesn't match weapons 0 or 1
+    // however, if it's a weapon that cannot be reloaded, i.e. SpartanLaser, and it has more ammo
+    // than the one we already have in the current slot, we CAN swap it
+    // swapping to a non-dual-wield type will cause a dual-wielded weapon to drop (handled in the weapon pickup event)
+    if ((weapons[0].weaponType != other.weaponType) &amp;&amp; (weapons[1].weaponType != other.weaponType)) || 
+        ((weapons[currentWeapon].weaponType == other.weaponType) &amp;&amp; (weapons[currentWeapon].maxReserve == 0) &amp;&amp; (weapons[currentWeapon].ammoCount &lt; other.ammo)) {
+        // figure out what weapon powerup is nearest
+        if (nearestPickupWeapon != noone) {
+            // compare it with the other nearest weapon
+            if (point_distance(x, y, other.x, other.y) &lt; nearestPickupWeaponDist) {
+                // new one is the closest
+                nearestPickupWeapon = other.id;
+                nearestPickupWeaponDist = point_distance(x, y, other.x, other.y);
+            }
+        } else {
+            // this is the nearest weapon
+            nearestPickupWeapon = other.id;
+            nearestPickupWeaponDist = point_distance(x, y, other.x, other.y);
+        }
+    }
+    
+    // dual-wield weapons can be swapped for anything that doesn't match itself
+    // we can only enter dual-wield mode if the drop is DW-compatible and the current weapon is, too
+    var w2SwapOk;
+    
+    w2SwapOk = true;
+    if (instance_exists(weapons[2])) {
+        // if the weapon type is different OR
+        // the weapon is non-reloadable, the types match, and the pickup has more ammo in it
+        w2SwapOk = (weapons[2].weaponType != other.weaponType) || ((weapons[2].weaponType == other.weaponType) &amp;&amp; (weapons[2].maxReserve == 0) &amp;&amp; (weapons[2].ammoCount &lt; other.ammo));
+    }
+    if (w2SwapOk &amp;&amp; global.weaponDualWield[other.weaponType] &amp;&amp; global.weaponDualWield[weapons[currentWeapon].weaponType]) {
+        // figure out which weapon powerup is nearest
+        if (nearestDualWeapon != noone) {
+            // compare it with the other nearest weapon
+            if (point_distance(x, y, other.x, other.y) &lt; nearestDualWeaponDist) {
+                // new one is the closest
+                nearestDualWeapon = other.id;
+                nearestDualWeaponDist = point_distance(x, y, other.x, other.y);
+            }
+        } else {
+            // this is the nearest weapon
+            nearestDualWeapon = other.id;
+            nearestDualWeaponDist = point_distance(x, y, other.x, other.y);
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

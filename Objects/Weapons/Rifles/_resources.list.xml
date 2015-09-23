@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="AssaultRifle" type="RESOURCE"/>
+  <resource name="BattleRifle" type="RESOURCE"/>
+  <resource name="BeamRifle" type="RESOURCE"/>
+  <resource name="Carbine" type="RESOURCE"/>
+  <resource name="Shotgun" type="RESOURCE"/>
+  <resource name="SniperRifle" type="RESOURCE"/>
+</resources>

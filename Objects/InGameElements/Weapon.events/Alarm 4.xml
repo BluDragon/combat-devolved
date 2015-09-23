@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="ALARM" id="4">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">reload timer</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// reload timer
+// upon expiration, reload the gun fully, or reload 1 bullet (depending on settings)
+if (reloadSingle) {
+    // reload one bullet
+    ammoCount += 1;
+    reserveAmmo -= 1;
+    
+    // check to see if there's more ammo to be loaded and there's ammo in reserve
+    // and check to see if the fire button was hit during the reload operation
+    if (ammoCount &lt; maxAmmo) &amp;&amp; (reserveAmmo &gt; 0) &amp;&amp; !reloadInterrupt {
+        // if we're dual-wielded, add some extra time
+        alarm[4] = floor(reloadTime * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldReloadFactor, 1));
+        if (ownerPlayer == global.myself) reloadSoundID = FMODSoundPlay(reloadSound);
+    } else {
+        // we can shoot again
+        readyToShoot = true;
+        
+        // check to see if a reload interrupt occured, and if so, do/send the event to fire the weapon
+        if (reloadInterrupt = true) {
+            reloadInterrupt = false;
+            // call the weapon firing user event
+            event_user(1);
+        }
+    }
+} else {
+    // reload as much as possible
+    var amount;
+    
+    // if the owner is dual-wielding and the weapons are the same type, prefer to take from the
+    // off-hand first, otherwise do the normal reload behaviour
+    if (owner.state == CHAR_STATE_DUALWIELD) {
+        if (owner.weapons[owner.currentWeapon].weaponType == owner.weapons[2].weaponType) {
+            var desiredAmount, wpAmount, wp2Amount, wp, wp2;
+            
+            wp = owner.weapons[owner.currentWeapon];
+            wp2 = owner.weapons[2];
+            desiredAmount = maxAmmo - ammoCount;
+            
+            // take from the off-hand gun first, then from the current gun
+            wp2Amount = min(wp2.reserveAmmo, desiredAmount);
+            desiredAmount -= wp2Amount;
+            wpAmount = min(wp.reserveAmmo, desiredAmount);
+            amount = wpAmount + wp2Amount;
+            
+            // take from the guns' ammo pools and reload the resulting amount
+            wp.reserveAmmo -= wpAmount;
+            wp2.reserveAmmo -= wp2Amount;
+            
+            ammoCount += amount;
+            
+            // due to the over-reserve feature, we need to make sure the primary doesn't have more ammo
+            // than is allowed, and if there is, stuff the excess back into the dw weapon's reserve
+            desiredAmount = max(0, (wp.reserveAmmo + wp.ammoCount) - (wp.maxReserve + wp.maxAmmo));
+            wp2.reserveAmmo += desiredAmount;
+            wp.reserveAmmo -= desiredAmount;
+        } else {
+            // default behaviour
+            amount = min(maxAmmo - ammoCount, reserveAmmo);
+            ammoCount += amount;
+            reserveAmmo -= amount;
+        }
+    } else {
+        // default behaviour
+        amount = min(maxAmmo - ammoCount, reserveAmmo);
+        ammoCount += amount;
+        reserveAmmo -= amount;
+    }
+    
+    readyToShoot = true;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

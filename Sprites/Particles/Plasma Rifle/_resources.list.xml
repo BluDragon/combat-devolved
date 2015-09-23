@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="PlasmaRifleSparksS" type="RESOURCE"/>
+  <resource name="PlasmaRifleFlashS" type="RESOURCE"/>
+  <resource name="PlasmaRifleSmokeS" type="RESOURCE"/>
+</resources>

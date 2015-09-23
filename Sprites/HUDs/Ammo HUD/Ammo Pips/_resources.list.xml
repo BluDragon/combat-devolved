@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="AmmoDividerS" type="RESOURCE"/>
+  <resource name="BattleRifleAmmoS" type="RESOURCE"/>
+  <resource name="BruteShotAmmoS" type="RESOURCE"/>
+  <resource name="CarbineAmmoS" type="RESOURCE"/>
+  <resource name="FuelRodAmmoS" type="RESOURCE"/>
+  <resource name="MagnumAmmoS" type="RESOURCE"/>
+  <resource name="MaulerAmmoS" type="RESOURCE"/>
+  <resource name="NeedlerAmmoS" type="RESOURCE"/>
+  <resource name="RocketAmmoS" type="RESOURCE"/>
+  <resource name="ShotgunAmmoS" type="RESOURCE"/>
+  <resource name="SniperRifleAmmoS" type="RESOURCE"/>
+  <resource name="SpikerAmmoS" type="RESOURCE"/>
+  <resource name="SMGAmmoS" type="RESOURCE"/>
+</resources>

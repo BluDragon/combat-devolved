@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    xoffset = -11;
+    yoffset = -5;
+    xoffsetDW = 10;
+    yoffsetDW = -1;
+    xbarrel = 26;
+    ybarrel = 7;
+    
+    refireTime = 4;
+    event_inherited();
+    
+    weaponType = WEAPON_PLASMARIFLE;
+    
+    // ammo counters (maximum, magazines, etc)
+    maxAmmo = global.weaponMaxAmmo[weaponType];  // how much ammo you can have loaded in
+    maxReserve = global.weaponMaxReserve[weaponType];   // how much ammo you can have in reserve
+    ammoCount = maxAmmo;  // how much ammo you currently have loaded in
+    reserveAmmo = 0;    // how much ammo you currently have in reserve
+    
+    // range in pixels
+    maxRange = 450;
+    
+    // damage
+    damage = 3;
+    shieldDamage = 15;
+    damageBleeds = false;
+    
+    // sprites for the various states and layers
+    normalSprite = PlasmaRifleBaseS;
+    grenadeSprite = PlasmaRifleBaseGrenadeS;
+    recoilSprite = PlasmaRifleFireS;
+    reloadSprite = -1;
+    bodySprite = PlasmaRifleBodyS;
+    meleeSprite = PlasmaRifleMeleeS;
+    dualSprite = PlasmaRifleBaseDWS;
+    dualRecoilSprite = PlasmaRifleFireDWS;
+    cooldownSprite = PlasmaRifleCooldownS;
+    dualCooldownSprite = PlasmaRifleCooldownDWS;
+    
+    // reticle
+    reticleSprite = PlasmaRifleReticleS;
+    
+    // recoil stuff
+    // since we now play recoil anims at 1:1 frame-wise, we don't need to calculate speed,
+    // just need to know how many frames there are
+    recoilAnimLength = sprite_get_number(recoilSprite) / 16;
+    reloadAnimLength = sprite_get_number(reloadSprite) / 16;
+    meleeAnimLength = sprite_get_number(meleeSprite) / 16;
+    dualRecoilAnimLength = sprite_get_number(dualRecoilSprite) / 32;
+    cooldownAnimLength = sprite_get_number(cooldownSprite) / 16;
+    dualCooldownAnimLength = sprite_get_number(dualCooldownSprite) / 32;
+    
+    // heat stuff, for cooldown periods --
+    // 1 heat is lost per frame, each shot adds some heat
+    overheats = true;
+    maxHeat = 75;
+    
+    // particle system stuff
+    // the emitter for the smoke
+    smokeEM = part_emitter_create(global.weaponPS);
+    
+    // shot effects
+    flashOffset = 2;    // sign is toggled on each shot
+    flashSize = 1;      // size of the flash, halved on following frame
+    sparkRand = 0;      // randomized on each shot
+    sparkSize = 1;      // size of the spark, havled on following frames
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

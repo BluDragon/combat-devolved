@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // the chat is not visible to start
+    showChat = false;
+    // the scope defaults to global
+    chatScope = CHAT_SCOPE_GLOBAL;
+    // it starts off hiding off-screen
+    x = 810;
+    alpha = 0.01;
+    tAlpha = 0.01;
+    // cursor flashing, flashes on and off each second
+    cursor = 0;
+    
+    // define the sizes of the entry and log areas
+    chatWidth = 214;    // for both areas
+    chatHeight = 145;   // for the log area
+    
+    // create the drawing surfaces
+    logSurface = surface_create(chatWidth, chatHeight);
+    entrySurface = surface_create(chatWidth - 3, 15);
+    
+    teamOK = false;
+    
+    // if chat logging is enabled, start the session
+    hLogFile = -1;
+    if (global.logChatToFile) event_user(0);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

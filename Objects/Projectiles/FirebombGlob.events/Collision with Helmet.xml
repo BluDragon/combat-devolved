@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="Helmet">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // if we've not been stickied before, and we hit a real victim, we are stuck now
+    if (!stickied) {
+        // globules care not for who they stick to -- friend and foe alike can be harmed
+        stickied = true;
+        stickyID = other.owner.id
+        
+        // figure out where we got stuck relative to the victim's origin
+        stickyX = (x - other.owner.x) * other.owner.image_xscale;
+        stickyY = y - other.owner.y;
+        // if it gets stuck below the torso, restrict it to within the torso region
+        if (stickyY &lt; 0) stickyY = 0;
+        if (stickyY &gt; 15) stickyY = 15;
+    } else {
+        // we HAVB been stickied, so light the poor sod on fire instead if we're not stuck to him
+        if (stickyID != other.owner.id) {
+            // only the host can set the burning state
+            if (global.isHost) other.owner.firebombBurning = true;
+            other.owner.firebombedBy = ownerPlayer;
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

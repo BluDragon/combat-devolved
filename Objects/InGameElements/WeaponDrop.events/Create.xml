@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // The following global param variables must be set before creation
+    weaponType = global.paramWeaponType;    // weapon type
+    ammo = global.paramWeaponAmmo;          // ammo left in the weapon
+    alarm[0] = global.paramWeaponLifetime;  // number of frames before the server despawns the item
+    
+    // set the proper weapon drop sprite based on the weapon type
+    sprite_index = global.weaponDropSprite[weaponType];
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

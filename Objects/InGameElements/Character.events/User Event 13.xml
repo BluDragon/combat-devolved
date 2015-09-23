@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="23">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    receiveCompleteMessage(global.serverSocket, 6, global.deserializeBuffer);
+    keyState = read_ushort(global.deserializeBuffer);
+    aimDirection = read_ushort(global.deserializeBuffer) * 360 / 65536;
+    aimDistance = read_ushort(global.deserializeBuffer) / 10;
+    
+    var temp, newIntel, newCrouched, i;
+    if(global.updateType == QUICK_UPDATE) or (global.updateType == FULL_UPDATE) {
+        receiveCompleteMessage(global.serverSocket, 16 ,global.deserializeBuffer);
+        x = read_ushort(global.deserializeBuffer) / 5;
+        y = read_ushort(global.deserializeBuffer) / 5;
+        // NOTE: Increased maximum speeds for lunging
+        hspeed = read_short(global.deserializeBuffer) / 8.5;
+        vspeed = read_short(global.deserializeBuffer) / 8.5;
+        xprevious = x;
+        yprevious = y;
+        
+        hp = read_ushort(global.deserializeBuffer) / 100;
+        shieldHp = read_ushort(global.deserializeBuffer) / 100;
+        
+        // read the character state
+        state = read_ubyte(global.deserializeBuffer);
+        // read the currently-equipped weapon index
+        currentWeapon = read_ubyte(global.deserializeBuffer);
+        // read the currently selected grenade index
+        currentGrenade = read_ubyte(global.deserializeBuffer);
+        
+        temp = read_ubyte(global.deserializeBuffer);
+        cloak = (temp &amp; $01 != 0);
+        newIntel = (temp &amp; $02 != 0);
+        newCrouched = (temp &amp; $04 != 0);
+        firebombBurning = (temp &amp; $08 != 0);
+        moveStatus = (temp &gt;&gt; 4) &amp; $07;
+        
+        // Set the crouch effects if crouch has changed (NOTE: not sure if this will cause sync issues)
+        // Specifically the collision box and runPower
+        // (NOTE: this is here for when new players join and the crouch state differs from the default)
+        if (newCrouched != crouched) {
+            if (newCrouched) {
+                sprite_index = ArmorCrouchColorS;
+                runPower = 0.6;
+            } else {
+                sprite_index = ArmorWalkColorS;
+                runPower = 1;
+            }
+        }
+        crouched = newCrouched;
+        
+        // Drop the intel if intel changes from true to false, destroy the intel when if changes from false to true
+        // This is more of a workaround to keep 2.1.2 compatible with 2.1.1, it should be solved later by
+        // fully syncing intel drop.
+        if (newIntel and !intel) {
+            if (team == TEAM_RED) {
+                with(IntelligenceBlue) {
+                    instance_destroy();
+                }
+            } else if (team == TEAM_BLUE) {
+                with(IntelligenceRed) {
+                    instance_destroy();
+                }
+            }
+        } else if (!newIntel &amp;&amp; intel) {
+            event_user(5);
+        }
+        intel = newIntel;
+    }
+    
+    if (global.updateType == FULL_UPDATE) {
+        receiveCompleteMessage(global.serverSocket, 8, global.deserializeBuffer);
+        
+        // read the time unscathed, cap at 60,000
+        timeUnscathed = min(read_ushort(global.deserializeBuffer), 60000);
+        
+        alarm[1] = read_short(global.deserializeBuffer);
+        if alarm[1] != 0 canGrabIntel = false;
+        
+        grenadeCooldownTimer = read_byte(global.deserializeBuffer);
+        
+        // read the grenade ammo levels
+        temp = read_ubyte(global.deserializeBuffer);
+        for (i = 0; i &lt; 4; i += 1) {
+            grenadeAmmo[i] = (temp &gt;&gt; (i * 2)) &amp; 3;
+        }
+        
+        // read the weapon types
+        var w1, w2, w3;
+        w1 = read_byte(global.deserializeBuffer);
+        w2 = read_byte(global.deserializeBuffer);
+        switch (state) {
+            case CHAR_STATE_DUALWIELD:
+            case CHAR_STATE_HEAVYGUN:
+            case CHAR_STATE_HEAVYTURRET:
+                // read the extra byte
+                receiveCompleteMessage(global.serverSocket, 1, global.deserializeBuffer);
+                w3 = read_byte(global.deserializeBuffer);
+                break;
+        }
+        
+        // check if there's a mismatch for each weapon, and if there is, destroy the instance and create a new one
+        if (weapons[0].weaponType != w1) {
+            with (weapons[0]) {
+                instance_destroy();
+            }
+            global.paramOwner = id;
+            weapons[0] = instance_create(x, y, global.weaponObject[w1]);
+            global.paramOwner = noone;
+            if (player == global.myself) Cursor.sprite_index = weapons[currentWeapon.reticleSprite];
+        }
+        if (weapons[1].weaponType != w2) {
+            with (weapons[1]) {
+                instance_destroy();
+            }
+            global.paramOwner = id;
+            weapons[1] = instance_create(x, y, global.weaponObject[w2]);
+            global.paramOwner = noone;
+            if (player == global.myself) Cursor.sprite_index = weapons[currentWeapon.reticleSprite];
+        }
+        // handle weapon states with aux weapon
+        switch (state) {
+            case CHAR_STATE_DUALWIELD:
+            case CHAR_STATE_HEAVYGUN:
+            case CHAR_STATE_HEAVYTURRET:
+                if (weapons[2] == noone) {
+                    // it doesn't exist yet
+                    global.paramOwner = id;
+                    weapons[2] = instance_create(x, y, global.weaponObject[w3]);
+                    global.paramOwner = noone;
+                } else {
+                    // already exists
+                    if (weapons[2].weaponType != w3) {
+                        with (weapons[2]) {
+                            instance_destroy();
+                        }
+                        global.paramOwner = id;
+                        weapons[2] = instance_create(x, y, global.weaponObject[w3]);
+                        global.paramOwner = noone;
+                    }
+                }
+                break;
+        }
+        
+        // Call the event for BOTH weapons
+        with (weapons[0]) {
+            event_user(13);
+        }
+        with (weapons[1]) {
+            event_user(13);
+        }
+        // if in a state with an aux weapon, call the event on the 3rd weapon
+        switch (state) {
+            case CHAR_STATE_DUALWIELD:
+            case CHAR_STATE_HEAVYGUN:
+            case CHAR_STATE_HEAVYTURRET:
+                with (weapons[2]) {
+                    event_user(13);
+                }
+                break;
+        }
+    }
+    event_user(1);
+}
+
+
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

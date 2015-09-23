@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="AssaultRifleIconS" type="RESOURCE"/>
+  <resource name="BattleRifleIconS" type="RESOURCE"/>
+  <resource name="BeamRifleIconS" type="RESOURCE"/>
+  <resource name="BruteShotIconS" type="RESOURCE"/>
+  <resource name="CarbineIconS" type="RESOURCE"/>
+  <resource name="EnergySwordIconS" type="RESOURCE"/>
+  <resource name="FlamethrowerIconS" type="RESOURCE"/>
+  <resource name="FuelRodCannonIconS" type="RESOURCE"/>
+  <resource name="GatlingIconS" type="RESOURCE"/>
+  <resource name="GravityHammerIconS" type="RESOURCE"/>
+  <resource name="MagnumIconS" type="RESOURCE"/>
+  <resource name="MaulerIconS" type="RESOURCE"/>
+  <resource name="NeedlerIconS" type="RESOURCE"/>
+  <resource name="PlasmaPistolIconS" type="RESOURCE"/>
+  <resource name="PlasmaRifleIconS" type="RESOURCE"/>
+  <resource name="RocketLauncherIconS" type="RESOURCE"/>
+  <resource name="ShotgunIconS" type="RESOURCE"/>
+  <resource name="SMGIconS" type="RESOURCE"/>
+  <resource name="SniperRifleIconS" type="RESOURCE"/>
+  <resource name="SpartanLaserIconS" type="RESOURCE"/>
+  <resource name="SpikerIconS" type="RESOURCE"/>
+</resources>

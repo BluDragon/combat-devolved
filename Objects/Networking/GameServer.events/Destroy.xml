@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DESTROY" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if(global.useLobbyServer) {
+    sendLobbyUnreg();
+}
+
+ds_list_destroy(global.players);
+// destroy the list of weapon powerups
+ds_list_destroy(global.weaponPowerups);
+socket_destroy(global.tcpListener);
+socket_destroy(global.serverSocket);
+buffer_destroy(serverId);
+
+with (Player)
+    instance_destroy();
+// we no longer have a player of our own
+global.myself = -1;
+
+with (JoiningPlayer)
+    instance_destroy();
+    
+with (PlayerControl)
+    instance_destroy();
+    
+if (global.attemptPortForward and portForwarded)
+    upnp_release_port(string(global.hostingPort), "TCP")
+
+room_goto_fix(returnRoom);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

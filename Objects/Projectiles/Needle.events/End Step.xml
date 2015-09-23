@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var part, xScale, angle;
+    
+    if (!stickied) {
+        // check if the target is no longer in the mask
+        if (!searching &amp;&amp; !targetInMask) {
+            searching = true;
+            target = noone;
+            nearestTarget = noone;
+            nearestDist = 0;
+        }
+        
+        // update the mask's position and direction
+        mask.x = x;
+        mask.y = y;
+        mask.image_angle = direction;
+        
+        // create and register the trail particle
+        xScale = point_distance(xprevious, yprevious, x, y) / 45;
+        angle = point_direction(xprevious, yprevious, x, y);
+        
+        part = part_type_create();
+        registerTempParticle(part, 4, 4);
+        part_type_shape(part, pt_shape_line);
+        part_type_color1(part, make_color_rgb(255, 128, 255));
+        part_type_alpha2(part, 1, 0);
+        part_type_orientation(part, angle, angle, 0, 0, 0);
+        part_type_scale(part, xScale, 0.17);
+        
+        part_particles_create(global.weaponPS, x + (xprevious - x) / 2, y + (yprevious - y) / 2, part, 1);
+    } else {
+        // stuck to a victim or an obstacle
+        // if a victim still exists, or we're not stuck to a wall
+        if (stickyID != -1) {
+            if (instance_exists(stickyID)) {
+                // set our position and orientation accordingly
+                if (stickyType == Character) {
+                    x = stickyID.x + stickyX * stickyID.image_xscale;
+                    y = stickyID.y + stickyY + stickyID.bobAmt;
+                    image_angle = stickyAngle * sign(stickyID.image_xscale);
+                    image_xscale = stickyID.image_xscale * stickyFlip;
+                } else if (stickyType == Helmet) {
+                    // stuck to a helmet
+                    x = stickyID.x + stickyID.image_xscale * lengthdir_x(point_distance(0, 0, stickyX, stickyY), stickyID.image_angle);
+                    y = stickyID.y + lengthdir_y(point_distance(0, 0, stickyX, stickyY), stickyID.image_angle * stickyID.image_xscale);
+                    image_xscale = stickyID.image_xscale * stickyFlip;
+                    image_angle = stickyID.image_angle + stickyAngle * sign(stickyID.image_xscale);
+                }
+            } else {
+                // victim died
+                stickyID = -1;
+                depth = -5; // default draw depth
+                // vanish
+                instance_destroy();
+            }
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

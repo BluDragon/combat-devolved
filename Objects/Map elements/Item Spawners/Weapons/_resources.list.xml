@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="WeaponSpawner" type="RESOURCE"/>
+  <resource name="Rifles" type="GROUP"/>
+  <resource name="Handguns" type="GROUP"/>
+  <resource name="Sub-Machine Guns" type="GROUP"/>
+  <resource name="Shoulder-Mounted" type="GROUP"/>
+  <resource name="Heavy Weapons" type="GROUP"/>
+  <resource name="Melee" type="GROUP"/>
+  <resource name="Grenades" type="GROUP"/>
+</resources>

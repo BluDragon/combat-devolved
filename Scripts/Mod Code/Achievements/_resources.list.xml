@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Menus" type="GROUP"/>
+  <resource name="achieveInit" type="RESOURCE"/>
+  <resource name="loadAchievements" type="RESOURCE"/>
+  <resource name="saveAchievements" type="RESOURCE"/>
+  <resource name="sumochi_call_api" type="RESOURCE"/>
+  <resource name="sumochiLogin" type="RESOURCE"/>
+  <resource name="achieveIncrement" type="RESOURCE"/>
+  <resource name="sumochiSyncStep" type="RESOURCE"/>
+  <resource name="game_end_sync" type="RESOURCE"/>
+  <resource name="sumochiSanitize" type="RESOURCE"/>
+  <resource name="sumochi_make_csv" type="RESOURCE"/>
+  <resource name="sumochi_parse_csv" type="RESOURCE"/>
+</resources>

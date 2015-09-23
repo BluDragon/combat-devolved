@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="13">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    ammoCount = max(0, ammoCount - 1);
+    playsound(x, y, global.AssaultRifleSnd);
+    
+    justShot = true;
+    readyToShoot = false;
+    weaponRefireTime();
+    
+    // HITSCAN ALSO, YAY
+    // draw the line this frame
+    drawShot = true;
+    
+    // angle stuff
+    var theta;
+    
+    theta = image_angle;    // use the current angle of the weapon rather than the char's aimDirection
+    if (image_xscale &lt; 0) theta -= 180;
+    // if the owner is dual-wielding, apply the spread penalty
+    theta += (random(muzzleSpread * 2) - muzzleSpread) * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldSpreadFactor, 1);
+
+    // common hitscan detection
+    // call the macro to calculate the shot point
+    weaponShotPoint();
+    // then do the up-close and personal check
+    hitscanCollision(x, y, theta, point_distance(x, y, shotx, shoty));
+    if (hitType == -1) {
+        // nobody was found up close, do the normal shot check
+        hitscanCollision(shotx, shoty, theta, maxRange);
+    } else {
+        // someone was found up close, don't draw the shot
+        drawShot = false;
+    }
+    
+    // increase muzzle spread and decrease range
+    muzzleSpread = min(muzzleSpread + 0.5, 4.5);
+    maxRange = max(maxRange - 35, 380);
+    
+    // common damage
+    weaponDealDamage(hitID,
+        shieldDamage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1),
+        damage * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldDamageFactor, 1),
+        damageBleeds, headshotShield, headshotKill, ownerPlayer, weaponType);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

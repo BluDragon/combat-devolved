@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    var xoffset, yoffset, xsize, ysize;
+    var tColor, sColor;
+    var frame, iconAlpha;
+
+    // the draw event only needs to occur if players exist
+    // (which is our rough/primitive check to see if we're in an actual match)
+    if (!instance_exists(Player)) exit;
+
+    // draw the cheevo popup if we've earned one
+    if (earnedCheevo != -1) {
+        // cheevo font
+        draw_set_font(fnt_cheevo);
+    
+        xoffset = view_xview[0];
+        yoffset = view_yview[0];
+        xsize = view_wview[0];
+        ysize = view_hview[0];
+        
+        draw_set_alpha(1);
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_middle);
+    
+        // define text and shadow colors
+        tColor = make_color_rgb(255, 255, 255);
+        sColor = make_color_rgb(128, 128, 128);
+        
+        iconAlpha = 1;
+        if (earnedAge &lt; 15) {
+            frame = (earnedAge / 15) * 6;
+        } else if (earnedAge &gt;= 15) &amp;&amp; (earnedAge &lt; 45) {
+            frame = 6;
+        } else if (earnedAge &gt;= 45) &amp;&amp; (earnedAge &lt; 60) {
+            frame = 6 - ((earnedAge - 45) / 15) * 6;
+        } else if (earnedAge &gt;= 60) &amp;&amp; (earnedAge &lt; 75) {
+            frame = ((earnedAge - 60) / 15) * 6;
+            iconAlpha = 0;
+        } else if (earnedAge &gt;= 75) &amp;&amp; (earnedAge &lt; 105) {
+            frame = 6;
+            iconAlpha = 0;
+        } else {
+            frame = 6 - ((earnedAge - 105) / 15) * 6;
+            iconAlpha = 0;
+        }
+        
+        draw_sprite_ext(global.achieveSprite[earnedCheevo], 0, xoffset + xsize / 2 - 98, yoffset + 68, 1, 1, 0, c_white, 1);
+        draw_sprite_ext(GameIconA, 0, xoffset + xsize / 2 - 98, yoffset + 68, 1, 1, 0, c_white, iconAlpha);
+        draw_sprite_ext(AchievementUnlockedS, frame, xoffset + xsize / 2, yoffset + 68, 1, 1, 0, c_white, 1);
+        
+        // draw the cheevo name text
+        draw_text_shadow(xoffset + xsize / 2 - 69, yoffset + 80, global.achieveName[earnedCheevo], 1, 1, 0, tColor, sColor, 1);
+        
+        // restore the old font
+        draw_set_font(fnt_gg2);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

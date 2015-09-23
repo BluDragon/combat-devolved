@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="Obstacle">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // no more movement
+    if (falling) {
+        move_contact_solid(direction, speed);
+        
+        // show the napalm glob
+        napalmDraw = true;
+        // determine how to orient the glob
+        // based on place_free calls... (ugh)
+        // we shouldn't need to make more than 3 calls to determine the orientation
+        var vCol, hCol, dCol;
+        
+        // vertical travel check
+        vCol = !place_free(x, y + sign(vspeed));
+        // horizontal travel check
+        hCol = !place_free(x + sign(hspeed), y);
+        // diagonal travel check
+        dCol = !place_free(x + sign(hspeed), y + sign(vspeed));
+        
+        // figure out the angle
+        if (vCol &amp;&amp; hCol &amp;&amp; dCol) || (vCol &amp;&amp; hCol &amp;&amp; !dCol) || (!vCol &amp;&amp; !hCol &amp;&amp; dCol) {
+            // all 3 are blocked (or just vert and horiz, or just diag), so diagonal in that direction
+            napalmAngle = floor(direction / 90) * 90 + 45;
+        } else if (vCol &amp;&amp; dCol &amp;&amp; !hCol) || (vCol &amp;&amp; !dCol &amp;&amp; !hCol) {
+            // vertical and diagonal only blocked, vertical in that direction
+            if (vspeed &lt; 0) {
+                napalmAngle = 90;
+            } else {
+                napalmAngle = 270;
+            }
+        } else if (hCol &amp;&amp; dCol &amp;&amp; !vCol) || (hCol &amp;&amp; !dCol &amp;&amp; !vCol) {
+            // horizontal in that direction
+            if (hspeed &lt; 0) {
+                napalmAngle = 180;
+            } else {
+                napalmAngle = 0;
+            }
+        }
+        
+        falling = false;
+        stickied = true;
+        speed = 0;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

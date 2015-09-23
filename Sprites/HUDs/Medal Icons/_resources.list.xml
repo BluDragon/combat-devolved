@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="DoubleKillM" type="RESOURCE"/>
+  <resource name="TripleKillM" type="RESOURCE"/>
+  <resource name="OverkillM" type="RESOURCE"/>
+  <resource name="KilltacularM" type="RESOURCE"/>
+  <resource name="KilltrocityM" type="RESOURCE"/>
+  <resource name="KillingSpreeM" type="RESOURCE"/>
+  <resource name="KillingFrenzyM" type="RESOURCE"/>
+  <resource name="RunningRiotM" type="RESOURCE"/>
+  <resource name="RampageM" type="RESOURCE"/>
+  <resource name="UntouchableM" type="RESOURCE"/>
+  <resource name="InvincibleM" type="RESOURCE"/>
+  <resource name="FlagCaptureM" type="RESOURCE"/>
+  <resource name="FlagDefenderM" type="RESOURCE"/>
+  <resource name="ExterminationM" type="RESOURCE"/>
+  <resource name="AssassinM" type="RESOURCE"/>
+  <resource name="DeathGraveM" type="RESOURCE"/>
+  <resource name="KilljoyM" type="RESOURCE"/>
+  <resource name="BeatdownM" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // record the original name and pass
+    originalName = global.achieveAccountName;
+    originalPass = global.achieveAccountPass;
+    
+    // define text and shadow colors
+    tColor = make_color_rgb(148, 191, 242);
+    sColor = make_color_rgb(73, 146, 233);
+
+    menu_create(40, 200, 200, 200, 30);
+    menu_setdimmed();
+    
+    // if text becomes blank, force offline mode, otherwise enable it if pass and name exist
+    menu_addedit_text2("Sumochi Username:", "global.achieveAccountName", '
+        if ((argument0 != "") &amp;&amp; (global.achieveAccountPass != "")) {
+            global.achieveOfflineMode = false;
+        } else {
+            global.achieveOfflineMode = true;
+        }
+        return argument0;
+    ');
+    
+    // if text becomes blank, force offline mode, otherwise enable it if pass and name exist
+    menu_addedit_pass("Sumochi Password:", "global.achieveAccountPass", '
+        if ((argument0 != "") &amp;&amp; (global.achieveAccountName != "")) {
+            global.achieveOfflineMode = false;
+        } else {
+            global.achieveOfflineMode = true;
+        }
+        return argument0;
+    ');
+    
+    // make sure a username and password are entered before allowing disabling of offline mode
+    menu_addedit_boolean("Offline Mode:", "global.achieveOfflineMode", '
+        if ((global.achieveAccountName == "") || (global.achieveAccountPass == "")) {
+            global.achieveOfflineMode = true;
+            show_message("You must enter a username and password before you can disable Offline Mode.");
+        }
+    ');
+    
+    // if changes were made to name/pass and offline mode is off, resync with Sumochi
+    // if resync fails, alert the player and suggest a solution
+    // i.e. no sumochi account? provide a link to the page to enable it
+    // gg2_login_failed? maybe the user/pass is wrong, or GG2F is down
+    menu_addback("Back", '
+        if ((originalName != global.achieveAccountName) || (originalPass != global.achieveAccountPass) &amp;&amp; (!global.achieveOfflineMode)) {
+            // resync with Sumochi
+            global.sumochiSyncFunc = SUMOSYNC_LOAD;
+            global.sumochiSyncReturn = AchievementsRoom;
+            // save the local copy of the cheevos first, so the new name/pass is committed
+            saveAchievements();
+            room_goto_fix(SumochiSyncRoom);
+        }
+        instance_destroy();
+    ');
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

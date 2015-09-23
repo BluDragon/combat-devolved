@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="ALARM" id="0">
+  <actions>
+    <action id="605" library="1">
+      <!--action name: Comment-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>NONE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">between-shot timer</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// between-shot timer
+
+// only proceed if we're not in the middle of a melee
+if (alarm[8] &lt;= 0) {    // &lt;= 0 this thing as a bugfix for melee freezing a gun's ability to fire
+                        // (because the  alarms get decremented and fired in order rather than all at once)
+    // if we have ammo left in the clip, we're ready to shoot
+    if (ammoCount &gt; 0) {
+        readyToShoot = true;
+    } else {
+        // we're out of ammo, attempt to auto-reload
+        readyToShoot = false;
+        
+        var reloadOk;
+        reloadOk = false;
+        // check to see if it's okay to reload
+        if (owner.state == CHAR_STATE_DUALWIELD) {
+            if (owner.weapons[owner.currentWeapon].weaponType == owner.weapons[2].weaponType) {
+                if ((owner.weapons[owner.currentWeapon].reserveAmmo + owner.weapons[2].reserveAmmo) &gt; 0) reloadOk = true;
+            } else {
+                if (reserveAmmo &gt; 0) reloadOk = true;
+            }
+        } else {
+            if (reserveAmmo &gt; 0) reloadOk = true;
+        }
+        
+        // if we're okay to reload, do so
+        if (reloadOk) {
+            // if we're dual-wielded, add some extra time
+            alarm[4] = floor(reloadTime * Iif(owner.state == CHAR_STATE_DUALWIELD, global.dualWieldReloadFactor, 1));
+            if (ownerPlayer == global.myself) {
+                // play the reload and kill zoom if the player was zoomed in
+                reloadSoundID = FMODSoundPlay(reloadSound);
+                if (owner.zoomed) {
+                    owner.zoomed = false;
+                    undoZoomCursor();
+                }
+            }
+        } else {
+            // we're all out of ammo, set readyToShoot so other processes can happen
+            readyToShoot = true;
+        }
+    }
+}
+
+// reset weapon jitter
+muzzleJitter = 0;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

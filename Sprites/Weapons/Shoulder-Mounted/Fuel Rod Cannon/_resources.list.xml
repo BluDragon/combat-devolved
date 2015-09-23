@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="FuelRodCannonBaseS" type="RESOURCE"/>
+  <resource name="FuelRodCannonBaseGrenadeS" type="RESOURCE"/>
+  <resource name="FuelRodCannonFireS" type="RESOURCE"/>
+  <resource name="FuelRodCannonBodyS" type="RESOURCE"/>
+  <resource name="FuelRodCannonMeleeS" type="RESOURCE"/>
+  <resource name="FuelRodCannonReloadS" type="RESOURCE"/>
+  <resource name="FuelRodCannonReticleS" type="RESOURCE"/>
+  <resource name="FuelRodCannonDropS" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="RocketLauncherBaseS" type="RESOURCE"/>
+  <resource name="RocketLauncherBaseGrenadeS" type="RESOURCE"/>
+  <resource name="RocketLauncherFireS" type="RESOURCE"/>
+  <resource name="RocketLauncherBodyS" type="RESOURCE"/>
+  <resource name="RocketLauncherMeleeS" type="RESOURCE"/>
+  <resource name="RocketLauncherReloadS" type="RESOURCE"/>
+  <resource name="RocketLauncherReticleS" type="RESOURCE"/>
+  <resource name="RocketLauncherDropS" type="RESOURCE"/>
+</resources>

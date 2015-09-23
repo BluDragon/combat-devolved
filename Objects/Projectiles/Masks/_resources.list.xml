@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="ExplosiveDummyMask" type="RESOURCE"/>
+  <resource name="MeleeStrikeMask" type="RESOURCE"/>
+  <resource name="SpartanLaserBeamMask" type="RESOURCE"/>
+  <resource name="SpartanLaserBlastMask" type="RESOURCE"/>
+  <resource name="FirebombGlobMask" type="RESOURCE"/>
+  <resource name="PlasmaBoltHomingMask" type="RESOURCE"/>
+  <resource name="NeedleHomingMask" type="RESOURCE"/>
+</resources>

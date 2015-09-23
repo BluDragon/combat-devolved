@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Armor" type="GROUP"/>
+  <resource name="Helmets" type="GROUP"/>
+  <resource name="Corpses" type="GROUP"/>
+  <resource name="Accessories" type="GROUP"/>
+  <resource name="Grenade Tossing" type="GROUP"/>
+</resources>

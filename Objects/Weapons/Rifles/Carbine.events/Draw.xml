@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    if (drawShot) {
+        drawShot = false;
+        
+        // create the proper particles
+        // always spawn the trail
+        part_particles_create(global.weaponPS, (shotx + shotx2) / 2, (shoty + shoty2) / 2, trailPT, 1);
+        // spawn the point-of-impact if the hitType is not a character, helmet, AND it hasn't fallen short
+        if ((hitType != Character) &amp;&amp; (hitType != Helmet) &amp;&amp; (hitType != -1)) {
+            part_particles_create(global.weaponPS, shotx2, shoty2, global.carbinePoiPT, 1);
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

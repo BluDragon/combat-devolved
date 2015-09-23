@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    // check to see if the chat window is currently open for business (typing)
+    if (global.chatControl) {
+        // check for the release of the Escape key, and exit chat if it's been released
+        if (keyboard_check_released(vk_escape)) {
+            // close chat
+            global.chatControl = false;
+            tAlpha = 0.5;
+        } else {
+            // check to make sure the keyboard string isn't too long
+            // if it is, trim it
+            if (string_length(keyboard_string) &gt; MAX_CHAT_SIZE) {
+                keyboard_string = string_copy(keyboard_string, 0, MAX_CHAT_SIZE);
+            }
+            // also remove any instances of "#"
+            keyboard_string = string_replace_all(keyboard_string, "#", "");
+        }
+    } else {
+        // it's not, so check to see if the player opted to open it
+        // we won't do that, though, if menu items are open
+        if (instance_exists(InGameMenuController) || instance_exists(OptionsController) || instance_exists(ControlsController) || instance_exists(TeamSelectController)) exit;
+        
+        if (keyboard_check_released(ord("T"))) {
+            // hides/shows the chat window, but does not begin typing in it
+            showChat = !showChat;
+            if (showChat) {
+                tAlpha = 0.5;
+            } else {
+                tAlpha = 0.01;
+            }
+        }
+        if (keyboard_check_released(ord("Y"))) {
+            // begins typing in the chat window
+            // if the chat window was not open, it will be shown so long as you're typing
+            global.chatControl = true;
+            chatScope = CHAT_SCOPE_GLOBAL;
+            showChat = true;
+            tAlpha = 0.99;
+            // clear the keyboard string
+            keyboard_string = "";
+            
+            // clear the input state before chat begins (hopefully this won't break servers)
+            // Commented out, cuz KZ wants this old 'feature' of Vindicator mod
+            //ClientInputstate(global.serverSocket, 0);
+            //socket_send(global.serverSocket);
+        }
+        if (keyboard_check_released(ord("U"))) {
+            // Team chat
+            // TODO: Check what game mode we're in -- some game modes don't allow/use Team Chat
+            chatScope = CHAT_SCOPE_TEAM;
+        }
+    }
+    
+    // Draw the chat surfaces
+    drawChatSurfaces();
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{    
+    // draw the shot, if shot exists this frame
+    if (drawShot) {
+        drawShot = false;
+        draw_set_alpha(0.8);
+        
+        // draw the line
+        draw_line_width_color(shotx, shoty, shotx2, shoty2, 2, c_black, c_yellow);
+        
+        // spawn the impact if the hitType is not a character, helmet, AND it hasn't fallen short
+        if ((hitType != Character) &amp;&amp; (hitType != Helmet) &amp;&amp; (hitType != -1)) {
+            var imp;
+            imp = instance_create(shotx2, shoty2, Impact);
+            imp.image_angle = direction;
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="TimerVoice" type="GROUP"/>
+  <resource name="Medals" type="GROUP"/>
+  <resource name="announcerInit" type="RESOURCE"/>
+  <resource name="announcerQueue" type="RESOURCE"/>
+  <resource name="genLeadMonitor" type="RESOURCE"/>
+  <resource name="kothLeadMonitor" type="RESOURCE"/>
+  <resource name="arenaLeadMonitor" type="RESOURCE"/>
+</resources>
